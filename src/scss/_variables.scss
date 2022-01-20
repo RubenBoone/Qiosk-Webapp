@@ -1,0 +1,57 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+
+// Body
+$body-bg: #FFFFFF;
+
+// Typography
+$font-family-text: 'Poppins', sans-serif;
+$font-size-base: 1.1rem;
+$line-height-base: 1.6;
+$text: #1D1D1D;
+
+// Base
+$lightblue: #869EEA;
+$primary: #4368DF;
+$secondary: #3B59B9;
+$danger:  #2C4CB1;
+$success: #F5F5F5;
+//$warning: #169BD5;
+$grey: #E2E2E2;
+$footer: #162E79;
+//$dark-blue: #004F71;
+$success-green: #28a745;
+$danger-red: #dc3545;
+$warning-orange: #ff894d;
+//$price-card-green: #55CD59;
+
+//$price-card-red: #FF5A5A;
+//$orange: #f79c2d;
+
+// Extra
+//$shadow: rgba(0,0,0, 0.25);
+//$nav: rgba(248, 249, 250, 0.6);
+//$nav_alt: #F1F1F1;
+//$hero-card: #FCFCFC;
+//$page-background: #F7F7F7;
+
+// Theme
+$theme-colors: (
+  'lightblue': $lightblue,
+  'primary': $primary,
+  'secondary' : $secondary,
+  'danger': $danger,
+  //'success': $success,
+  //'warning': $warning,
+  'grey': $grey,
+  'footer': $footer,
+  //'darkblue': $dark-blue,
+  'green': $success-green,
+  'red': $danger-red,
+  'orange': $warning-orange,
+  //'nav' : $nav,
+  //'nav-alt': $nav_alt,
+  //'hero-card' : $hero-card,
+  'text' : $text,
+);
+
