@@ -1,16 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#"><img src="assets/images/qiosk_logo.png" alt="Qiosk Logo" height="75px"></a>
+  <a class="navbar-brand" href="/"><img src="assets/images/qiosk_logo.png" alt="Qiosk Logo" height="75px">De Slimme Kiosks</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current) </span></a>
-      <a class="nav-item nav-link" href="#">Boekingen</a>
-      <a class="nav-item nav-link" href="#">Gebruikers</a>
-      <a class="nav-item nav-link" href="#">Tags</a>
-      <a class="nav-item nav-link" href="#">Admin</a>
-      <a class="nav-item nav-link" href="#">Afmelden</a>
+  <!--    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li> -->
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/booking">Boekingen</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/users">Gebruikers</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/tags">Tags</a>
+      </li>
+      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/admin/login">Admin</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/admin/logout">Afmelden</a>
+      </li>
     </div>
   </div>
 </nav>

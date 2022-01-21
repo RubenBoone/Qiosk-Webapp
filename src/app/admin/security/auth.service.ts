@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from './user';
 import {Observable} from 'rxjs';
 import {UserResponse} from './userResponse';
-
+import { GlobalConstants } from 'src/app/shared/global-constants';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +18,9 @@ export class AuthService {
 
   getUser(): User | null {
     if (this.isLoggedIn()){
-      return { id : parseInt(localStorage.getItem('id') ?? '0') ,
-        email: localStorage.getItem('email') ?? '', password: '',
+      return { userID: parseInt(localStorage.getItem('userID') ?? '0') ,
+        email: localStorage.getItem('email') ?? '',
+        password: '',
         isActive:localStorage.getItem('isActive')=='true',
         isAdmin:localStorage.getItem('isAdmin')=='true',
         token: this.getToken()  };
@@ -28,18 +29,28 @@ export class AuthService {
     }
   }
 
+
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.removeItem('userID');
     localStorage.removeItem('role')
+  }
+
+
+  login(result:UserResponse){
+    // save access token localstorage
+    localStorage.setItem('token', result.token);
+    localStorage.setItem('userID', result.userID.toString());
+    localStorage.setItem('email', result.email);
+    result.isAdmin?localStorage.setItem('role','admin'):''
   }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
-  authenticate(email: string,password:string, firstName:string): Observable<UserResponse> {
-    //return this.httpClient.post<UserResponse>(GlobalConstants.apiURL+'api/Users/authenticate', {email, password, firstName});
+  authenticate(email: string,password:string): Observable<UserResponse> {
+    return this.httpClient.post<UserResponse>(GlobalConstants.apiURL+'Users/authenticate', {email, password});
   }
 
 }

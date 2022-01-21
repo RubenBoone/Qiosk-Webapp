@@ -1,25 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BookingsTableComponent } from './bookings-table/bookings-table.component';
-import { UsersTableComponent } from './users-table/users-table.component';
-import { BookingDetailComponent } from './booking-detail/booking-detail.component';
-import { LinkTagComponent } from './link-tag/link-tag.component';
+import { SharedModule } from '../shared/shared.module';
+import { AdminRoutingModule } from './admin-routing.module';
+import { SecurityModule } from './security/security.module';
 
 
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    DashboardComponent,
-    BookingsTableComponent,
-    UsersTableComponent,
-    BookingDetailComponent,
-    LinkTagComponent
-  ],
+  declarations: [],
   imports: [
-    CommonModule
+    AdminRoutingModule,
   ]
+
 })
 export class AdminModule { }
