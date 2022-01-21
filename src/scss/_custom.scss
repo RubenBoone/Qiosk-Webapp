@@ -28,6 +28,16 @@
   }
 }
 
-.h-64{
- height: 640px;
+.hfa{
+  height: -webkit-fill-available;
+}
+
+
+.b-0 {
+bottom: 0;
+}
+.bg1{
+  background-image: url('../assets/images/EC_lang.jpg');
+  background-size: cover;
+
 }
