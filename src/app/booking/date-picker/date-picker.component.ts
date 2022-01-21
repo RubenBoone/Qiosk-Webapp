@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-date-picker',
@@ -6,7 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date-picker.component.scss'],
 })
 export class DatePickerComponent implements OnInit {
+  @Output() goToNextStep = new EventEmitter<{}>();
+
   constructor() {}
+
+  nextStep() {
+    console.log('instep');
+    this.goToNextStep.emit({});
+  }
 
   ngOnInit(): void {}
 }
