@@ -1,12 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SecurityComponent } from './security/security.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AuthService } from './auth.service';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SecurityComponent
+  ],
+  exports:[
+  SecurityComponent
+  ],
   imports: [
-    CommonModule
+    SharedModule
+  ],
+  providers: [
+    AuthService,
+    //{
+      //provide: HTTP_INTERCEPTORS,
+      //useClass: SecurityInterceptor,
+      //multi: true
+    //}
   ]
 })
 export class SecurityModule { }

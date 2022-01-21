@@ -1,6 +1,12 @@
 import {User} from './user';
 
 export interface UserResponse {
-  accessToken: string;
-  user: User;
+  userID: number;
+  firstName:string;
+  lastName:string;
+  email: string;
+  password: string;
+  isActive:boolean;
+  isAdmin:boolean;
+  token: string;
 }

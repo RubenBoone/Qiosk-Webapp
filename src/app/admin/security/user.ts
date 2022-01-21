@@ -1,6 +1,8 @@
 export interface User {
-  id: number;
+  userID: number;
   email: string;
   password: string;
+  isActive:boolean;
+  isAdmin:boolean;
   token: string;
 }
