@@ -9,6 +9,7 @@ import { SecurityModule } from './security/security.module';
   declarations: [],
   imports: [
     AdminRoutingModule,
+    SharedModule
   ]
 
 })
