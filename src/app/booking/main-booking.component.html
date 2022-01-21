@@ -1,0 +1,4 @@
+<div class="container mt-5">
+  <app-date-picker *ngIf="step == 1" (goToNextStep)="goToNextStep()"></app-date-picker>
+  <app-booking-form *ngIf="step == 2"></app-booking-form>
+</div>
