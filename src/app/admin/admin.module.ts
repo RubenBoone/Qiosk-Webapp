@@ -8,8 +8,7 @@ import { SecurityModule } from './security/security.module';
 @NgModule({
   declarations: [],
   imports: [
-    AdminRoutingModule,
-    SharedModule
+    AdminRoutingModule
   ]
 
 })
