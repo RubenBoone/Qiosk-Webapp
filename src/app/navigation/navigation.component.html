@@ -5,22 +5,22 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true } " data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/booking">Maak een boeking</a>
       </li>
-      <li  *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li  *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/booking">Boekingen</a>
       </li>
-      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/users">Gebruikers</a>
       </li>
-      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/tags">Tags</a>
       </li>
-      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/login">Admin</a>
       </li>
-      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/logout">Afmelden</a>
       </li>
     </div>
