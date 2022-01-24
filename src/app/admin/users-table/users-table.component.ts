@@ -27,7 +27,7 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtOptions = {language: LanguageApp.dutch_datatables};
-
+    this.getUsers();
   }
   add() {
     this.router.navigate(['admin/articles/form'], {state: {mode: "add"}});

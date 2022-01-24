@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,7 +16,8 @@ import { DataTablesModule } from 'angular-datatables';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule,
 
   ],
   imports: [
@@ -24,7 +26,9 @@ import { DataTablesModule } from 'angular-datatables';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule,
+
   ],
   providers: []
 })
