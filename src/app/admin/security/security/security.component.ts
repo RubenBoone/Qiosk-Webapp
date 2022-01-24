@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-security',
   templateUrl: './security.component.html',
-  styleUrls: ['./security.component.scss']
+  styleUrls: ['./security.component.scss'],
 })
 export class SecurityComponent implements OnInit {
   CE = localStorage.getItem('email');
   user: User = {
-    userID: 0, email: this.CE != null ? this.CE : '', password: '', token: '',
+    userID: 0,
+    email: this.CE != null ? this.CE : '',
+    password: '',
+    token: '',
     isActive: false,
-    isAdmin: false
+    isAdmin: false,
   };
 
   isSubmitted: boolean = false;
@@ -22,8 +25,11 @@ export class SecurityComponent implements OnInit {
 
   isLogin: boolean = false;
   isLogout: boolean = false;
-  constructor(private authService: AuthService, private encryptionService: EncryptionService, private router: Router) {
-}
+  constructor(
+    private authService: AuthService,
+    private encryptionService: EncryptionService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     switch (this.router.url) {
       case '/admin/login': {
@@ -35,7 +41,8 @@ export class SecurityComponent implements OnInit {
         this.authService.logout();
         this.router.navigate(['']);
         break;
-      } default: {
+      }
+      default: {
         this.isLogin = true;
         break;
       }
@@ -44,14 +51,26 @@ export class SecurityComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.isLogin) {
-      this.authService.authenticate(this.user.email,this.encryptionService.encrypt(this.user.password)).subscribe(result => {
-        this.errorMessage = '';
-        this.authService.login(result);
-        this.getUser();
-      }, error => {
-        this.errorMessage = error.status == 0 ? 'Slechte verbinding... probeer de pagina opnieuw te laden!' : 'Email of wachtwoord is onjuist!';
-        this.isSubmitted = false;
-      });
+      this.authService
+        .authenticate(
+          this.user.email,
+          this.encryptionService.encrypt(this.user.password)
+        )
+        .subscribe(
+          (result) => {
+            this.errorMessage = '';
+            this.authService.login(result);
+            this.getUser();
+            this.router.navigate(['/admin/dashboard']);
+          },
+          (error) => {
+            this.errorMessage =
+              error.status == 0
+                ? 'Slechte verbinding... probeer de pagina opnieuw te laden!'
+                : 'Email of wachtwoord is onjuist!';
+            this.isSubmitted = false;
+          }
+        );
     }
   }
   getUser() {
@@ -60,5 +79,4 @@ export class SecurityComponent implements OnInit {
       this.user = user;
     }
   }
-
 }

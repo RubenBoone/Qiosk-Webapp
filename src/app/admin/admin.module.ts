@@ -4,13 +4,11 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SecurityModule } from './security/security.module';
 import { UsersTableModule } from './users-table/users-table.module';
 
-
-
 @NgModule({
   declarations: [],
+
   imports: [
     AdminRoutingModule
   ]
-
 })
-export class AdminModule { }
+export class AdminModule {}
