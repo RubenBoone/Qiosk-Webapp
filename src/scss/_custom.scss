@@ -10,34 +10,31 @@
   user-select: none; /* Non-prefixed version, currently*/
 }
 
-.crud-table{
-  thead{
-    *{
+.crud-table {
+  thead {
+    * {
       color: whitesmoke;
       font-weight: normal;
     }
   }
-  tr{
-    .fa-check{
+  tr {
+    .fa-check {
       color: $success-green;
     }
-    .fa-times{
+    .fa-times {
       color: $danger-red;
     }
-
   }
 }
 
-.hfa{
+.hfa {
   height: -webkit-fill-available;
 }
 
-
 .b-0 {
-bottom: 0;
+  bottom: 0;
 }
-.bg1{
-  background-image: url('../assets/images/EC_lang.jpg');
+.bg1 {
+  background-image: url("../assets/images/EC_lang.jpg");
   background-size: cover;
-
 }
