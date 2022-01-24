@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
+
   },
   "private": true,
   "dependencies": {
@@ -34,9 +36,9 @@
     "@angular/cli": "~12.0.5",
     "@angular/compiler-cli": "~12.0.5",
     "@types/crypto-js": "^4.1.0",
-    "@types/datatables.net": "^1.10.21",
+    "@types/datatables.net": "^1.11.3",
     "@types/jasmine": "~3.6.0",
-    "@types/jquery": "^3.5.13",
+    "@types/jquery": "^3.5.1",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",

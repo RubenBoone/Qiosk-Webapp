@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SecurityComponent } from './security/security.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthService } from './auth.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
   SecurityComponent
   ],
   imports: [
-    SharedModule
+SharedModule
   ],
   providers: [
     AuthService,
