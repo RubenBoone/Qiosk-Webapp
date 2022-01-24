@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookingModule } from './booking/booking.modules';
 import { FooterComponent } from './footer/footer.component';
@@ -17,8 +16,8 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     SharedModule,
-    AppRoutingModule,
-    BookingModule
+    BookingModule,
+
 
   ],
   providers: [],
