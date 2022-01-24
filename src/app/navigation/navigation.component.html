@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/"><img src="assets/images/qiosk_logo.png" alt="Qiosk Logo" height="75px">De Slimme Qiosks</a>
+  <a class="navbar-brand" href="/"><img src="assets/images/qiosk_logo.png" alt="Qiosk Logo" height="50px">De Slimme Qiosks</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,6 +19,9 @@
       </li>
       <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/login">Admin</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a class="nav-link" routerLink="/admin/dashboard">Dashboard</a>
       </li>
       <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/logout">Afmelden</a>
