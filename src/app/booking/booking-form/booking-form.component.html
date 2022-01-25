@@ -17,7 +17,7 @@
       </div>
       <div class="mb-3">
         <label for="numberOfPersons" class="form-label">Aantal extra bezoekers</label>
-        <select name="numberOfPersons" id="numberOfPersons"  class="form-control">
+        <select name="numberOfPersons" id="numberOfPersons"  class="form-control" [(ngModel)]="guests">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -27,16 +27,19 @@
     </div>
   </div>
   <div class="col-md-7 col-sm-12 d-flex align-items-center">
-    <div class="row">
+    <div class="col">
+    <div class="row" *ngFor="let item of createRange(guests);">
       <div class="mb-3 col-md-6 col-sm-12">
-        <label for="name" class="form-label">Naam van persoon 1</label>
+        <label for="name" class="form-label">Naam van persoon {{item}}</label>
         <input type="text" class="form-control" id="name">
       </div>
       <div class="mb-3 col-md-6 col-sm-12">
-        <label for="email" class="form-label">Email van persoon 1</label>
+        <label for="email" class="form-label">Email van persoon {{item}}</label>
         <input type="email" class="form-control" id="email">
       </div>
     </div>
+    </div>
+
   </div>
   <div class="col-md-6 col-sm-12">
     <button type="submit" class="btn btn-secondary">Boeken</button>

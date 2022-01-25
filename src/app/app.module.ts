@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BookingModule } from './booking/booking.modules';
@@ -12,14 +13,9 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     FooterComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
-  imports: [
-    SharedModule,
-    BookingModule,
-
-
-  ],
+  imports: [SharedModule, BookingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
