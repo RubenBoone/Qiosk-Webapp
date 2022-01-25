@@ -12,11 +12,11 @@ export class CompanyService {
   constructor(private httpClient: HttpClient) {}
 
   getBookings(): Observable<Company[]> {
-    return this.httpClient.get<Company[]>(this.baseUrl + 'Bookings');
+    return this.httpClient.get<Company[]>(this.baseUrl + 'Companies');
   }
 
   getBooking(id: number): Observable<Company> {
-    return this.httpClient.get<Company>(this.baseUrl + 'Bookings/' + id);
+    return this.httpClient.get<Company>(this.baseUrl + 'Companies/' + id);
   }
 
   postBooking(company: Company): Observable<Company> {
@@ -33,13 +33,13 @@ export class CompanyService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     return this.httpClient.put<Company>(
-      this.baseUrl + 'Bookings/' + id,
+      this.baseUrl + 'Companies/' + id,
       company,
       { headers: headers }
     );
   }
 
   deleteBooking(id: number): Observable<Company> {
-    return this.httpClient.delete<Company>(this.baseUrl + 'Bookings/' + id);
+    return this.httpClient.delete<Company>(this.baseUrl + 'Companies/' + id);
   }
 }
