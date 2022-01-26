@@ -11,15 +11,17 @@ export class EncryptionService {
   constructor() { }
    encrypt( value:string){
 
-    var key = CryptoJS.enc.Utf8.parse(this.lock);
-    var iv = CryptoJS.enc.Utf8.parse(this.lock);
-    var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(value.toString()), key,
-    {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-    });
-    return encrypted.toString();
+    var password = value;
+    var gibber = "fd656.he6/.";
+    var gibber2 = 'g46758/*+';
+
+    var charArray = password.split('');
+    var reverseArray = charArray.reverse();
+    var reversedArray = reverseArray.join('');
+    var pwd = gibber2.toUpperCase() + reversedArray.toUpperCase() + gibber;
+    return pwd;
+
   }
 }
+
+
