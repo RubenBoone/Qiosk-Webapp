@@ -81,6 +81,7 @@ export class MainBookingComponent implements OnInit {
   getUserData(organisator: User, users: Array<Array<string>>) {
     this.organisator = organisator;
     this.extraUsers = users;
+    this.company.name = organisator.company.name;
     this.onSubmit();
   }
 
@@ -110,20 +111,18 @@ export class MainBookingComponent implements OnInit {
       }
     );
 
-    this.postCompany$ = this.companyService
-      .postCompany(this.organisator.company)
-      .subscribe(
-        (result) => {
-          console.log('Submitted company');
-          this.company = result;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.postCompany$ = this.companyService.postCompany(this.company).subscribe(
+      (result) => {
+        console.log('Submitted company');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
     this.organisator.companyID = this.companyId;
     this.organisator.company = this.company;
+
     this.user = this.organisator;
 
     this.postUser$ = this.userService.postUser(this.organisator).subscribe(
@@ -140,7 +139,6 @@ export class MainBookingComponent implements OnInit {
       this.user.email = element[2];
       this.user.firstName = element[0];
       this.user.lastName = element[1];
-      this.user.company = this.company;
       this.postUser$ = this.userService.postUser(this.user).subscribe(
         (result) => {
           console.log('Submitted user');
