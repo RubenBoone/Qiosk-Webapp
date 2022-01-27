@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { UserService } from './user.service';
 import { UserRoutingModule } from './user-routing.module';
+import { SecurityInterceptor } from '../security/security.interceptor';
 
 
 
@@ -23,11 +24,11 @@ import { UserRoutingModule } from './user-routing.module';
   ],
   providers: [
     UserService,
-    /*{
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,
       multi: true
-    }*/
+    }
   ]
 })
 export class UserModule { }
