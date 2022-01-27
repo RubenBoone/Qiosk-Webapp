@@ -5,6 +5,7 @@ export interface User {
   firstName:string;
   lastName:string;
   email: string;
+  password: string;
   isActive:boolean;
   isAdmin:boolean;
   companyID:number;

@@ -7,15 +7,15 @@ import { KioskService } from './kiosk-table/kiosk.service';
 import { AuthGuard } from './security/auth.guard';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { SecurityComponent } from './security/security/security.component';
-import { UsersTableComponent } from './users-table/users-table.component';
 
 const routes: Routes = [
   { path: '', component: SecurityComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'logout', component: SecurityComponent ,canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
-  { path: 'users', component: UsersTableComponent,canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'users', loadChildren: () => import('./user/user.module').then(m => m.UserModule),canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'tags', loadChildren: () => import('./tag/tag.module').then(m => m.TagModule),canActivate: [AuthGuard], canActivateChild: [AuthGuard] }
+
 ];
 
 @NgModule({

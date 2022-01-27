@@ -2,10 +2,10 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Booking } from '../admin/bookings-table/booking';
 import { BookingService } from '../admin/bookings-table/booking.service';
-import { Company } from '../admin/users-table/company';
-import { CompanyService } from '../admin/users-table/company.service';
-import { User } from '../admin/users-table/user';
-import { UserService } from '../admin/users-table/user.service';
+import { Company } from '../admin/user/users-table/company';
+import { CompanyService } from '../admin/user/company.service';
+import { User } from '../admin/user/users-table/user';
+import { UserService } from '../admin/user/user.service';
 
 @Component({
   selector: 'app-main-booking',

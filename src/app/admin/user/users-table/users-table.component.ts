@@ -21,7 +21,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   // Extra
   dtOptions: DataTables.Settings = {};
 
-  user: User = {userID: 0, firstName: "", lastName: "", email: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0,name: ""}}
+  user: User = {userID: 0, firstName: "", lastName: "", email: "", password: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0,name: ""}}
   errorMessage: string = '';
 
   constructor(private router: Router, private userService: UserService) { }
