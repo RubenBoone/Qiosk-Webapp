@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
     SecurityComponent
   ],
   exports:[
-  SecurityComponent
+    SecurityComponent
   ],
   imports: [
     SharedModule
