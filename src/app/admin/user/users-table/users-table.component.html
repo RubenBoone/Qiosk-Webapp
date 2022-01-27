@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row my-4">
+    <div class="col-lg-10 col-12 offset-lg-1">
+      <div class="d-flex justify-content-between flex-column flex-md-row text-center">
+        <h2 class="mb-0">Gebruikers beheren</h2>
+        <div class="mx-auto mx-md-0">
+          <button type="button" (click)="add()" class="btn btn-green addBtn d-flex align-items-center" >Nieuwe gebruiker <span class=" ml-2 material-icons-outlined">
+<!--add_circle_outline -->
+</span></button>
+        </div>
+      </div>
+      <hr class="mb-0 mt-2">
+      <!--<app-loading *ngIf="loading$ | async"></app-loading>
+      <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen artikelen gevonden</div>
+      </div>  -->
+      <div *ngIf="users.length == 0" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen gebruikers gevonden</div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
+      <table datatable   [dtOptions]="dtOptions"  class="table crud-table bg-success shadow-sm " *ngIf="users && users.length > 0">
+        <thead class="bg-secondary">
+        <tr>
+          <th scope="col">Naam</th>
+          <th scope="col">Email</th>
+          <th scope="col">Bedrijf</th>
+          <th scope="col">Admin</th>
+          <th scope="col">Actief</th>
+          <th class="text-center" scope="col">Wijzigen</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let user of users" >
+          <td>{{user.firstName+' '+user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.company.name}}</td>
+          <td>{{user.isAdmin?'Ja':'Nee'}}</td>
+          <td>{{user.isActive?'Ja':'Nee'}}</td>
+          <td class="text-center">
+            <div class="btn-group">
+              <a href="/admin/users/{{user.userID}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+              <button type="button" class="btn btn-green" (click)="edit(user.userID)"><i class="far fa-edit"></i></button>
+              <button type="button" class="btn btn-red" (click)="delete(user.userID)"><i class="far fa-trash-alt"></i></button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
