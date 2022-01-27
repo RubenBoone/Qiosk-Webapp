@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TagService } from './tag.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from '../security/security.interceptor';
+import { TagRoutingModule } from './tag-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { SecurityInterceptor } from '../security/security.interceptor';
     TagFormComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    TagRoutingModule
   ],
   exports: [
     TagTableComponent,

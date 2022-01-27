@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row my-4">
+        <div class="col-lg-10 col-12 offset-lg-1">
+          <div class="justify-content-between flex-column flex-md-row">
+            <h2 class="mb-0">Gebruikers beheren</h2>
+            <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+                {{errorMessage}}
+            </div>
+            <br>
+            <form class="mb-5" (ngSubmit)="onSubmit()" #userForm="ngForm">
+                <div class="form-group">
+                    <label for="firstName">Voornaam</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Voornaam" [(ngModel)]="user.firstName"
+                        #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Voornaam moet ingevuld zijn</div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Achternaam</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Achternaam" [(ngModel)]="user.lastName"
+                        #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Achternaam moet ingevuld zijn</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="user.email"
+                        #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Email moet ingevuld zijn</div>
+                </div>
+                <div class="form-group">
+                    <label for="isActive">Actief</label>
+                    <input type="checkbox" class="form-control" id="isActive" name="isActive" [(ngModel)]="user.isActive"
+                        #name="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="isAdmin">Admin</label>
+                    <input type="checkbox" class="form-control" id="isAdmin" name="isAdmin" [(ngModel)]="user.isAdmin"
+                        #name="ngModel">
+                </div>
+                <!--Select met FK companys-->
+                <div class="form-group">
+                    <label for="firstname">Bedrijf</label>
+                    <input type="" class="form-control" id="firstname" name="firstname" placeholder="Voornaam" [(ngModel)]="user.company"
+                        #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Er moet een bedrijf gekozen zijn</div>
+                </div>
+                <button type="submit" class="btn btn-green mb-5" *ngIf="isAdd" [disabled]="!userForm.form.valid || isSubmitted">Voeg toe</button>
+                <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!userForm.form.valid || isSubmitted">Opslaan</button>
+            </form>
+        </div>
+    </div>
+</div>

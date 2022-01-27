@@ -15,21 +15,27 @@ export class TagTableComponent implements OnInit, OnDestroy {
   tags: Tag[] = [];
   tags$: Subscription = new Subscription();
   deleteTag$: Subscription = new Subscription();
+  postTag$: Subscription = new Subscription();
+  putTag$: Subscription = new Subscription();
 
-// Extra
-dtOptions: DataTables.Settings = {};
+  // Extra
+  dtOptions: DataTables.Settings = {};
 
-tag: Tag = {tagID: 0, code: ""};
-errorMessage: string = '';
+  tag: Tag = {tagID: 0, code: ""};
+  errorMessage: string = '';
 
-constructor(private router: Router, private tagService: TagService) { }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private router: Router, private tagService: TagService) { }
 
   ngOnInit(): void {
     this.dtOptions = {language: LanguageApp.dutch_datatables};
     this.getTags();
+  }
+
+  ngOnDestroy(): void {
+    this.tags$.unsubscribe();
+    this.postTag$.unsubscribe();
+    this.putTag$.unsubscribe();
+    this.deleteTag$.unsubscribe();
   }
 
   add() {

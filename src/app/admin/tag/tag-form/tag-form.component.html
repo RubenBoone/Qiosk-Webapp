@@ -1,13 +1,22 @@
-<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
-    {{errorMessage}}
-  </div>
-  <form (ngSubmit)="onSubmit()" #tagForm="ngForm">
-    <div class="form-group">
-      <label for="code">Code</label>
-      <input type="text" class="form-control" id="code" name="code" placeholder="Code" [(ngModel)]="tag.code"
-             #name="ngModel" required>
-      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Code moet ingevuld zijn</div>
+<div class="container-fluid">
+    <div class="row my-4">
+        <div class="col-lg-10 col-12 offset-lg-1">
+          <div class="justify-content-between flex-column flex-md-row">
+            <h2 class="mb-0">Tags beheren</h2>
+            <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+                {{errorMessage}}
+            </div>
+            <br>
+            <form (ngSubmit)="onSubmit()" #tagForm="ngForm">
+                <div class="form-group">
+                    <label for="code">Code</label>
+                    <input type="text" class="form-control" id="code" name="code" placeholder="Code" [(ngModel)]="tag.code"
+                        #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Code moet ingevuld zijn</div>
+                </div>
+                <button type="submit" class="btn btn-green" *ngIf="isAdd" [disabled]="!tagForm.form.valid || isSubmitted">Voeg toe</button>
+                <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!tagForm.form.valid || isSubmitted">Opslaan</button>
+            </form>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!tagForm.form.valid || isSubmitted">Voeg toe</button>
-    <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!tagForm.form.valid || isSubmitted">Opslaan</button>
-  </form>
+</div>
