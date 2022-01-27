@@ -9,12 +9,7 @@ import { PageNotFoundComponent } from './error/page-not-found/page-not-found.com
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'booking', component: MainBookingComponent },
-
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
-  },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
     // 404
   { path: '**', pathMatch: 'full',
     component: PageNotFoundComponent },
