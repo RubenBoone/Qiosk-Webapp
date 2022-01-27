@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AdminRoutingModule } from './admin-routing.module';
-//mag niet weg
-import { UsersTableModule } from './users-table/users-table.module';
-import { TagModule } from './tag/tag.module';
 import { SharedModule } from '../shared/shared.module';
 import { SecurityModule } from './security/security.module';
 
@@ -11,11 +8,8 @@ import { SecurityModule } from './security/security.module';
   imports: [
     SharedModule,
     AdminRoutingModule,
-    SecurityModule,
-    UsersTableModule
+    SecurityModule
   ],
-  exports: [
-    UsersTableModule
-  ]
+  exports: []
 })
 export class AdminModule {}

@@ -14,7 +14,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
   isEdit: boolean = false;
   userID: number = 0;
 
-  user: User = {userID: 0, firstName: "", lastName: "", email: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0, name: ""}}
+  user: User = {userID: 0, firstName: "", lastName: "", email: "", password: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0, name: ""}}
 
   isSubmitted: boolean = false;
   errorMessage: string = "";

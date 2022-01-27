@@ -1,7 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Company } from 'src/app/admin/users-table/company';
-import { User } from 'src/app/admin/users-table/user';
+import { Company } from 'src/app/admin/user/users-table/company';
+import { User } from 'src/app/admin/user/users-table/user';
 
 @Component({
   selector: 'app-booking-form',
