@@ -1,4 +1,6 @@
 <div class="container mt-5">
-  <app-date-picker *ngIf="step == 1" (goToNextStep)="goToNextStep()"></app-date-picker>
-  <app-booking-form *ngIf="step == 2"></app-booking-form>
+  <form action="">
+  <app-date-picker *ngIf="step == 1" (goToNextStep)="goToNextStep($event.date, $event.time)"></app-date-picker>
+  <app-booking-form *ngIf="step == 2" (getUserData)="getUserData($event.organisator, $event.users)"></app-booking-form>
+</form>
 </div>

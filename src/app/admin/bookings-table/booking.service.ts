@@ -13,7 +13,7 @@ export class BookingService {
   constructor(private httpClient: HttpClient) {}
 
   getBookings(): Observable<Booking[]> {
-    return this.httpClient.get<Booking[]>(this.baseUrl + 'Bookings');
+    return this.httpClient.get<Booking[]>(this.baseUrl + 'bookings');
   }
 
   getBooking(id: number): Observable<Booking> {

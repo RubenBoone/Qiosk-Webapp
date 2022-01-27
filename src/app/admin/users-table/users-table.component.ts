@@ -8,10 +8,9 @@ import { UserService } from './user.service';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
-  styleUrls: ['./users-table.component.scss']
+  styleUrls: ['./users-table.component.scss'],
 })
 export class UsersTableComponent implements OnInit {
-
   users: User[] = [];
   users$: Subscription = new Subscription();
   deleteUser$: Subscription = new Subscription();
@@ -21,21 +20,31 @@ export class UsersTableComponent implements OnInit {
   // Extra
   dtOptions: DataTables.Settings = {};
 
-  user: User = {userID: 0, firstName: "", lastName: "", email: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0,name: ""}}
+  user: User = {
+    userID: 0,
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    isActive: false,
+    isAdmin: false,
+    companyID: 0,
+    company: { companyID: 0, name: '' },
+  };
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.dtOptions = {language: LanguageApp.dutch_datatables};
+    this.dtOptions = { language: LanguageApp.dutch_datatables };
     this.getUsers();
   }
   add() {
-    this.router.navigate(['admin/articles/form'], {state: {mode: "add"}});
+    this.router.navigate(['admin/articles/form'], { state: { mode: 'add' } });
   }
 
   getUsers() {
-    this.users$ = this.userService.getUsers().subscribe(result => {
+    this.users$ = this.userService.getUsers().subscribe((result) => {
       this.users = result;
-    })
+    });
   }
 }
