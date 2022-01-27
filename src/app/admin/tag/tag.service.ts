@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/shared/global-constants';
-import { Tag } from './tag';
+import { Tag } from './tag-table/tag';
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +11,15 @@ export class TagService {
   baseUrl = GlobalConstants.apiURL;
   constructor(private httpClient: HttpClient) {}
 
-  getBookings(): Observable<Tag[]> {
+  getTags(): Observable<Tag[]> {
     return this.httpClient.get<Tag[]>(this.baseUrl + 'tags');
   }
 
-  getBooking(id: number): Observable<Tag> {
+  getTag(id: number): Observable<Tag> {
     return this.httpClient.get<Tag>(this.baseUrl + 'tags/' + id);
   }
 
-  postBooking(tag: Tag): Observable<Tag> {
+  postTag(tag: Tag): Observable<Tag> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -28,7 +28,7 @@ export class TagService {
     });
   }
 
-  putBooking(id: number, tag: Tag): Observable<Tag> {
+  putTag(id: number, tag: Tag): Observable<Tag> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -37,7 +37,7 @@ export class TagService {
     });
   }
 
-  deleteBooking(id: number): Observable<Tag> {
+  deleteTag(id: number): Observable<Tag> {
     return this.httpClient.delete<Tag>(this.baseUrl + 'tags/' + id);
   }
 }

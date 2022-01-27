@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { AdminRoutingModule } from './admin-routing.module';
 //mag niet weg
-import { SecurityModule } from './security/security.module';
 import { UsersTableModule } from './users-table/users-table.module';
-import { KioskTableComponent } from './kiosk-table/kiosk-table.component';
-import { TagTableComponent } from './tag-table/tag-table.component';
+import { TagModule } from './tag/tag.module';
+import { SharedModule } from '../shared/shared.module';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
-  declarations: [
-    KioskTableComponent,
-    TagTableComponent
-  ],
-
+  declarations: [],
   imports: [
-    AdminRoutingModule
+    SharedModule,
+    AdminRoutingModule,
+    SecurityModule,
+    TagModule,
+    UsersTableModule
+  ],
+  exports: [
+    TagModule,
+    UsersTableModule
   ]
 })
 export class AdminModule {}
