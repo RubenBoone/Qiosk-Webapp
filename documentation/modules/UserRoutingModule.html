@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li >AdminRoutingModule</li>
+    <li >UserRoutingModule</li>
 </ol>
 
 
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/admin/admin-routing.module.ts</code>
+            <code>src/app/admin/user/user-routing.module.ts</code>
         </p>
 
 
@@ -74,24 +74,19 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
-import { DashboardComponent } from &#x27;./dashboard/dashboard.component&#x27;;
-import { SecurityComponent } from &#x27;./security/security/security.component&#x27;;
-import { UsersTableComponent } from &#x27;./user/users-table/users-table.component&#x27;;
+import { UserFormComponent } from &#x27;./user-form/user-form.component&#x27;;
+import { UsersTableComponent } from &#x27;./users-table/users-table.component&#x27;;
 
 const routes: Routes &#x3D; [
-  { path: &#x27;login&#x27;, component: SecurityComponent },
-  { path: &#x27;logout&#x27;, component: SecurityComponent },
-  { path: &#x27;users&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;./user/user.module&#x27;).then(m &#x3D;&gt; m.UserModule)&quot; },
-  { path: &#x27;tags&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;./tag/tag.module&#x27;).then(m &#x3D;&gt; m.TagModule)&quot; },
-  { path: &#x27;dashboard&#x27;, component: DashboardComponent }
+    { path: &#x27;&#x27;, component: UsersTableComponent },
+    { path: &#x27;form&#x27;, component: UserFormComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
-</code></pre>
+export class UserRoutingModule {}</code></pre>
     </div>
 </div>
 
@@ -136,7 +131,7 @@ export class AdminRoutingModule {}
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'AdminRoutingModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserRoutingModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

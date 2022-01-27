@@ -737,19 +737,28 @@ export class TagFormComponent implements OnInit, OnDestroy {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;alert alert-danger&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;isSubmitted &amp;&amp; errorMessage&quot;&gt;
-    {{errorMessage}}
-  &lt;/div&gt;
-  &lt;form (ngSubmit)&#x3D;&quot;onSubmit()&quot; #tagForm&#x3D;&quot;ngForm&quot;&gt;
-    &lt;div class&#x3D;&quot;form-group&quot;&gt;
-      &lt;label for&#x3D;&quot;code&quot;&gt;Code&lt;/label&gt;
-      &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;code&quot; name&#x3D;&quot;code&quot; placeholder&#x3D;&quot;Code&quot; [(ngModel)]&#x3D;&quot;tag.code&quot;
-             #name&#x3D;&quot;ngModel&quot; required&gt;
-      &lt;div [hidden]&#x3D;&quot;name.valid || name.pristine&quot; class&#x3D;&quot;alert alert-danger&quot;&gt;Code moet ingevuld zijn&lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+    &lt;div class&#x3D;&quot;row my-4&quot;&gt;
+        &lt;div class&#x3D;&quot;col-lg-10 col-12 offset-lg-1&quot;&gt;
+          &lt;div class&#x3D;&quot;justify-content-between flex-column flex-md-row&quot;&gt;
+            &lt;h2 class&#x3D;&quot;mb-0&quot;&gt;Tags beheren&lt;/h2&gt;
+            &lt;div class&#x3D;&quot;alert alert-danger&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;isSubmitted &amp;&amp; errorMessage&quot;&gt;
+                {{errorMessage}}
+            &lt;/div&gt;
+            &lt;br&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;onSubmit()&quot; #tagForm&#x3D;&quot;ngForm&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                    &lt;label for&#x3D;&quot;code&quot;&gt;Code&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;code&quot; name&#x3D;&quot;code&quot; placeholder&#x3D;&quot;Code&quot; [(ngModel)]&#x3D;&quot;tag.code&quot;
+                        #name&#x3D;&quot;ngModel&quot; required&gt;
+                    &lt;div [hidden]&#x3D;&quot;name.valid || name.pristine&quot; class&#x3D;&quot;alert alert-danger&quot;&gt;Code moet ingevuld zijn&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-green&quot; *ngIf&#x3D;&quot;isAdd&quot; [disabled]&#x3D;&quot;!tagForm.form.valid || isSubmitted&quot;&gt;Voeg toe&lt;/button&gt;
+                &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-green&quot; *ngIf&#x3D;&quot;isEdit&quot; [disabled]&#x3D;&quot;!tagForm.form.valid || isSubmitted&quot;&gt;Opslaan&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
-    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary&quot; *ngIf&#x3D;&quot;isAdd&quot; [disabled]&#x3D;&quot;!tagForm.form.valid || isSubmitted&quot;&gt;Voeg toe&lt;/button&gt;
-    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary&quot; *ngIf&#x3D;&quot;isEdit&quot; [disabled]&#x3D;&quot;!tagForm.form.valid || isSubmitted&quot;&gt;Opslaan&lt;/button&gt;
-  &lt;/form&gt;</code></pre>
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -784,8 +793,8 @@ export class TagFormComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">    {{errorMessage}}  </div>  <form (ngSubmit)="onSubmit()" #tagForm="ngForm">    <div class="form-group">      <label for="code">Code</label>      <input type="text" class="form-control" id="code" name="code" placeholder="Code" [(ngModel)]="tag.code"             #name="ngModel" required>      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Code moet ingevuld zijn</div>    </div>    <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!tagForm.form.valid || isSubmitted">Voeg toe</button>    <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!tagForm.form.valid || isSubmitted">Opslaan</button>  </form></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingDetailComponent', 'selector': 'app-booking-detail'},{'name': 'BookingFormComponent', 'selector': 'app-booking-form'},{'name': 'BookingsTableComponent', 'selector': 'app-bookings-table'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatePickerComponent', 'selector': 'app-date-picker'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'KioskTableComponent', 'selector': 'app-kiosk-table'},{'name': 'LinkTagComponent', 'selector': 'app-link-tag'},{'name': 'MainBookingComponent', 'selector': 'app-main-booking'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'SecurityComponent', 'selector': 'app-security'},{'name': 'TagFormComponent', 'selector': 'app-tag-form'},{'name': 'TagTableComponent', 'selector': 'app-tag-table'},{'name': 'UsersTableComponent', 'selector': 'app-users-table'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">    <div class="row my-4">        <div class="col-lg-10 col-12 offset-lg-1">          <div class="justify-content-between flex-column flex-md-row">            <h2 class="mb-0">Tags beheren</h2>            <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">                {{errorMessage}}            </div>            <br>            <form (ngSubmit)="onSubmit()" #tagForm="ngForm">                <div class="form-group">                    <label for="code">Code</label>                    <input type="text" class="form-control" id="code" name="code" placeholder="Code" [(ngModel)]="tag.code"                        #name="ngModel" required>                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Code moet ingevuld zijn</div>                </div>                <button type="submit" class="btn btn-green" *ngIf="isAdd" [disabled]="!tagForm.form.valid || isSubmitted">Voeg toe</button>                <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!tagForm.form.valid || isSubmitted">Opslaan</button>            </form>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingDetailComponent', 'selector': 'app-booking-detail'},{'name': 'BookingFormComponent', 'selector': 'app-booking-form'},{'name': 'BookingsTableComponent', 'selector': 'app-bookings-table'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatePickerComponent', 'selector': 'app-date-picker'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'KioskTableComponent', 'selector': 'app-kiosk-table'},{'name': 'LinkTagComponent', 'selector': 'app-link-tag'},{'name': 'MainBookingComponent', 'selector': 'app-main-booking'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'SecurityComponent', 'selector': 'app-security'},{'name': 'TagFormComponent', 'selector': 'app-tag-form'},{'name': 'TagTableComponent', 'selector': 'app-tag-table'},{'name': 'UserFormComponent', 'selector': 'app-user-form'},{'name': 'UsersTableComponent', 'selector': 'app-users-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TagFormComponent'};
 </script>

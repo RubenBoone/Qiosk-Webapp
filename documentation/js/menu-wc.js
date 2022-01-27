@@ -214,6 +214,43 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/TagRoutingModule.html" data-type="entity-link" >TagRoutingModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/UserModule.html" data-type="entity-link" >UserModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#components-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' : 'data-target="#xs-components-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' :
+                                            'id="xs-components-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' }>
+                                            <li class="link">
+                                                <a href="components/UserFormComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserFormComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/UsersTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersTableComponent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' : 'data-target="#xs-injectables-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' :
+                                        'id="xs-injectables-links-module-UserModule-e3ff19349d5a01bed25c2b3783a154b74bd6ba91aa286cfcdbffe4802d3441e07e6d59a07c90e6483eaa2b96ad345d6099f73b7f68f552a4225739281b713ccf"' }>
+                                        <li class="link">
+                                            <a href="injectables/UserService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/UserRoutingModule.html" data-type="entity-link" >UserRoutingModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/UsersTableModule.html" data-type="entity-link" >UsersTableModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
