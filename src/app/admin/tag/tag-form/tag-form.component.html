@@ -1,0 +1,13 @@
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+    {{errorMessage}}
+  </div>
+  <form (ngSubmit)="onSubmit()" #tagForm="ngForm">
+    <div class="form-group">
+      <label for="code">Code</label>
+      <input type="text" class="form-control" id="code" name="code" placeholder="Code" [(ngModel)]="tag.code"
+             #name="ngModel" required>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Code moet ingevuld zijn</div>
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!tagForm.form.valid || isSubmitted">Voeg toe</button>
+    <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!tagForm.form.valid || isSubmitted">Opslaan</button>
+  </form>
