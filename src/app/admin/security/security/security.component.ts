@@ -58,11 +58,15 @@ export class SecurityComponent implements OnInit {
         )
         .subscribe(
           (result) => {
+            if(!result.isAdmin){
+              this.errorMessage ='Verboden toegang! ... Neem contact op met de beheerder';
+            this.isSubmitted = false;
+            }else{
             this.errorMessage = '';
             this.authService.login(result);
             this.getUser();
             this.router.navigate(['/admin/dashboard']);
-          },
+          }},
           (error) => {
             this.errorMessage =
               error.status == 0

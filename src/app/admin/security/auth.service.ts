@@ -48,7 +48,9 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
-
+  getRole() {
+    return localStorage.getItem('role');
+  }
   authenticate(email: string,password:string): Observable<UserResponse> {
     return this.httpClient.post<UserResponse>(GlobalConstants.apiURL+'Users/authenticate', {email, password});
   }
