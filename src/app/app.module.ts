@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
-=======
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AdminModule } from './admin/admin.module';
->>>>>>> f15993dfaff9a6116318e883ffd6b77c9029a25c
 
 import { AppComponent } from './app.component';
 import { BookingModule } from './booking/booking.modules';
@@ -19,17 +16,10 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     FooterComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
-<<<<<<< HEAD
-  imports: [SharedModule, BookingModule],
-=======
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    BookingModule],
->>>>>>> f15993dfaff9a6116318e883ffd6b77c9029a25c
+
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BookingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
