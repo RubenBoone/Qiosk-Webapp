@@ -1,22 +1,41 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookingService } from './bookings-table/booking.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { KioskService } from './kiosk-table/kiosk.service';
+import { AuthGuard } from './security/auth.guard';
+import { SecurityInterceptor } from './security/security.interceptor';
 import { SecurityComponent } from './security/security/security.component';
 import { TagFormComponent } from './tag/tag-form/tag-form.component';
 import { TagTableComponent } from './tag/tag-table/tag-table.component';
 import { UsersTableComponent } from './users-table/users-table.component';
 
 const routes: Routes = [
+  { path: '', component: SecurityComponent },
   { path: 'login', component: SecurityComponent },
-  { path: 'logout', component: SecurityComponent },
-  { path: 'users', component: UsersTableComponent },
-  { path: 'tags', component: TagTableComponent},
-  { path: 'tags/form', component: TagFormComponent},
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'logout', component: SecurityComponent ,canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'users', component: UsersTableComponent,canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'tags', component: TagTableComponent,canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  { path: 'tags/form', component: TagFormComponent,canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [
+    BookingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    },KioskService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AdminRoutingModule {}
