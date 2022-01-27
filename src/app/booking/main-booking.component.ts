@@ -115,7 +115,7 @@ export class MainBookingComponent implements OnInit {
       .subscribe(
         (result) => {
           console.log('Submitted company');
-          this.companyId = result.companyID;
+          this.company = result;
         },
         (error) => {
           console.log(error);
@@ -123,8 +123,7 @@ export class MainBookingComponent implements OnInit {
       );
 
     this.organisator.companyID = this.companyId;
-    this.organisator.company.companyID = this.companyId;
-
+    this.organisator.company = this.company;
     this.user = this.organisator;
 
     this.postUser$ = this.userService.postUser(this.organisator).subscribe(
@@ -141,6 +140,7 @@ export class MainBookingComponent implements OnInit {
       this.user.email = element[2];
       this.user.firstName = element[0];
       this.user.lastName = element[1];
+      this.user.company = this.company;
       this.postUser$ = this.userService.postUser(this.user).subscribe(
         (result) => {
           console.log('Submitted user');
