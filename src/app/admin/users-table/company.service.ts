@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GlobalConstants } from '../shared/global-constants';
+import { GlobalConstants } from 'src/app/shared/global-constants';
 import { Company } from './company';
 
 @Injectable({
@@ -11,15 +11,15 @@ export class CompanyService {
   baseUrl = GlobalConstants.apiURL;
   constructor(private httpClient: HttpClient) {}
 
-  getBookings(): Observable<Company[]> {
+  getCompanies(): Observable<Company[]> {
     return this.httpClient.get<Company[]>(this.baseUrl + 'Companies');
   }
 
-  getBooking(id: number): Observable<Company> {
+  getCompany(id: number): Observable<Company> {
     return this.httpClient.get<Company>(this.baseUrl + 'Companies/' + id);
   }
 
-  postBooking(company: Company): Observable<Company> {
+  postCompany(company: Company): Observable<Company> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -28,7 +28,7 @@ export class CompanyService {
     });
   }
 
-  putBooking(id: number, company: Company): Observable<Company> {
+  puitCompany(id: number, company: Company): Observable<Company> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -39,7 +39,7 @@ export class CompanyService {
     );
   }
 
-  deleteBooking(id: number): Observable<Company> {
+  deleteCompany(id: number): Observable<Company> {
     return this.httpClient.delete<Company>(this.baseUrl + 'Companies/' + id);
   }
 }

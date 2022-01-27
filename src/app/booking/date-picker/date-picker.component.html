@@ -1,6 +1,5 @@
 <div class="my-5">
   <h2>Maak een boeking - Stap 1</h2>
-  <form>
     <div class="mb-3">
       <label for="day" class="form-label">Welke dag?</label>
       <input type="date" class="form-control" id="day" aria-describedby="dayHelp" name="date" [(ngModel)]="this.date">
@@ -12,5 +11,4 @@
       <small class="text-muted">Een rondleiding duurt ongeveer 3u.</small>
     </div>
     <button type="button" class="btn btn-secondary" (click)="nextStep()">Volgende</button>
-  </form>
 </div>

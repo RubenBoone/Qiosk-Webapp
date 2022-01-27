@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Company } from 'src/app/admin/users-table/company';
+import { User } from 'src/app/admin/users-table/user';
 
 @Component({
   selector: 'app-booking-form',
@@ -6,10 +9,70 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./booking-form.component.scss'],
 })
 export class BookingFormComponent implements OnInit {
-  @Input() guests: number = 1;
+  constructor() {}
 
-  constructor() {
-    this.guests = 1;
+  @Input() company: string = '';
+  @Input() email: string = '';
+  @Input() firstname: string = '';
+  @Input() lastname: string = '';
+  @Input() password: string = '';
+  @Input() extraEmail: string = '';
+  @Input() extraFirstName: string = '';
+  @Input() extraLastName: string = '';
+
+  @Input() extraUsers: Array<Array<any>> = [];
+
+  @Input() addExtraUser() {
+    this.extraUsers.push([
+      this.extraFirstName,
+      this.extraLastName,
+      this.extraEmail,
+    ]);
+
+    this.extraEmail = '';
+    this.extraFirstName = '';
+    this.extraLastName = '';
+  }
+
+  @Input() deleteExtraUser(msg: string) {
+    let index = 0;
+    this.extraUsers.forEach((element) => {
+      if (element[0] == msg) {
+        index = this.extraUsers.indexOf(element);
+      }
+    });
+
+    this.extraUsers.splice(index, 1);
+  }
+
+  @Output() getUserData = new EventEmitter<{
+    organisator: User;
+    users: Array<Array<string>>;
+  }>();
+
+  companyObject: Company = { companyID: 0, name: '' };
+
+  UserData() {
+    this.companyObject.name = this.company;
+
+    this.getUserData.emit({
+      organisator: {
+        userID: 0,
+        firstName: this.firstname,
+        lastName: this.lastname,
+        email: this.email,
+        isActive: true,
+        isAdmin: false,
+        companyID: 0,
+        company: this.companyObject,
+        password: this.password,
+      },
+      users: this.extraUsers,
+    });
+  }
+
+  onSubmit() {
+    this.UserData();
   }
 
   createRange(number: number) {
