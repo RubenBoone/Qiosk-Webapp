@@ -12,11 +12,9 @@ import { SecurityModule } from './security/security.module';
     SharedModule,
     AdminRoutingModule,
     SecurityModule,
-    TagModule,
     UsersTableModule
   ],
   exports: [
-    TagModule,
     UsersTableModule
   ]
 })
