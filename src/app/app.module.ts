@@ -16,13 +16,10 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     FooterComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    BookingModule],
+
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BookingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
