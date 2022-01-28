@@ -20,11 +20,11 @@ export class UserService {
     return this.httpClient.get<User>(this.baseUrl + 'Users/' + id);
   }
 
-  postUser(user: User): Observable<User> {
+  async postUser(user: User): Promise<Observable<User>> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<User>(this.baseUrl + 'users', user, {
+    return await this.httpClient.post<User>(this.baseUrl + 'users', user, {
       headers: headers,
     });
   }
