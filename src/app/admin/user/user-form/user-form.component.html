@@ -38,7 +38,13 @@
                 </div>
                 <!--Select met FK companys-->
                 <div class="form-group">
-                    <label for="firstname">Bedrijf</label>
+                    <label for="company">Bedrijf</label>
+                    <select name="company" ngModel>
+                        <option value="" disabled>Choose a state</option>
+                        <option>
+                          {{ user.company }}
+                        </option>
+                      </select>
                     <input type="" class="form-control" id="firstname" name="firstname" placeholder="Voornaam" [(ngModel)]="user.company"
                         #name="ngModel" required>
                     <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Er moet een bedrijf gekozen zijn</div>
