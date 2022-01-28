@@ -15,6 +15,8 @@
  }
 body{
   zoom: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
  html {
    font-family: $font-family-text !important;
@@ -46,6 +48,7 @@ body{
    text-align: left;
    background-color: #fff;
    height: 100%;
+   padding-top: 65px; 
  }
 
  [tabindex="-1"]:focus:not(:focus-visible) {
@@ -55,7 +58,6 @@ body{
  hr {
    box-sizing: content-box;
    height: 0;
-   overflow: visible;
  }
 
  h1, h2, h3, h4, h5, h6 {
@@ -169,8 +171,6 @@ body{
  pre {
    margin-top: 0;
    margin-bottom: 1rem;
-   overflow: auto;
-   -ms-overflow-style: scrollbar;
  }
 
  figure {
@@ -183,7 +183,6 @@ body{
  }
 
  svg {
-   overflow: hidden;
    vertical-align: middle;
  }
 
@@ -230,11 +229,6 @@ body{
  }
 
  button,
- input {
-   overflow: visible;
- }
-
- button,
  select {
    text-transform: none;
  }
@@ -276,7 +270,6 @@ body{
  }
 
  textarea {
-   overflow: auto;
    resize: vertical;
  }
 

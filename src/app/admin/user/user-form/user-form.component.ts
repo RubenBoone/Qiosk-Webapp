@@ -15,12 +15,13 @@ export class UserFormComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
   userID: number = 0;
+  companys: Company[] = []
 
-  user: User = {userID: 0, firstName: "", lastName: "", email: "", password: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0, name: ""}}
-  companys: Array<Company> = []
+  user: User = {userID: 0, firstName: "", lastName: "", email: "", password: "", isActive: true, isAdmin: false, companyID: 0, company:{ companyID :0, name: ""}}
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
+  companys$: Subscription = new Subscription();
   user$: Subscription = new Subscription();
   postUser$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
@@ -33,14 +34,14 @@ export class UserFormComponent implements OnInit, OnDestroy {
     if (this.userID != null && this.userID > 0) {
       this.user$ = this.userService.getUserById(this.userID).subscribe(result => this.user = result);
     }
-
-    //this.companys = this.companyService.getCompanies();
   }
 
   ngOnInit(): void {
+    this.getCompanies();
   }
 
   ngOnDestroy(): void {
+    this.companys$.unsubscribe();
     this.user$.unsubscribe();
     this.postUser$.unsubscribe();
     this.putUser$.unsubscribe();
@@ -66,5 +67,11 @@ export class UserFormComponent implements OnInit, OnDestroy {
                 this.errorMessage = error.message;
               });
     }
+  }
+
+  getCompanies() {
+    this.companys$ = this.companyService.getCompanies().subscribe(result => {
+      this.companys = result;
+    })
   }
 }
