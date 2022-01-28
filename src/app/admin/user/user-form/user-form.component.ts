@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CompanyService } from '../company.service';
 import { UserService } from '../user.service';
+import { Company } from '../users-table/company';
 import { User } from '../users-table/user';
 
 @Component({
@@ -15,7 +17,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
   userID: number = 0;
 
   user: User = {userID: 0, firstName: "", lastName: "", email: "", password: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0, name: ""}}
-
+  companys: Array<Company> = []
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
@@ -23,7 +25,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
   postUser$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private companyService: CompanyService) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.userID = +this.router.getCurrentNavigation()?.extras.state?.id;
@@ -32,6 +34,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
       this.user$ = this.userService.getUserById(this.userID).subscribe(result => this.user = result);
     }
 
+    //this.companys = this.companyService.getCompanies();
   }
 
   ngOnInit(): void {
