@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Booking } from '../admin/bookings-table/booking';
 import { BookingService } from '../admin/bookings-table/booking.service';
 import { Company } from '../admin/users-table/company';
@@ -16,6 +17,8 @@ export class MainBookingComponent implements OnInit {
   @Input() step: number = 2;
   @Input() booking: Booking = { bookingID: 0, bookingTime: new Date() };
   company: Company = { companyID: 0, name: '' };
+  @Input() date: Date = new Date();
+  @Input() time: string = '';
   user: User = {
     userID: 0,
     firstName: '',
@@ -28,62 +31,17 @@ export class MainBookingComponent implements OnInit {
     company: this.company,
   };
 
-  date: Array<number> = [];
-  time: Array<number> = [];
+  dateArray: Array<number> = [];
+  timeArray: Array<number> = [];
   companyId: number = 0;
 
-  organisator: User = {
-    userID: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    isActive: true,
-    isAdmin: false,
-    companyID: 0,
-    company: this.company,
-  };
+  organisator = this.user;
+
   extraUsers: Array<Array<string>> = [];
 
   postBooking$: Subscription = new Subscription();
   postCompany$: Subscription = new Subscription();
   postUser$: Subscription = new Subscription();
-
-  goToNextStep(date: Date, time: string) {
-    console.log();
-    date
-      .toString()
-      .split('-')
-      .forEach((date) => {
-        this.date.push(Number(date));
-      });
-
-    time
-      .toString()
-      .split(':')
-      .forEach((time) => {
-        this.time.push(Number(time));
-      });
-
-    var bookingDate: Date = new Date(
-      this.date[0],
-      this.date[1] - 1,
-      this.date[2],
-      this.time[0],
-      this.time[1]
-    );
-
-    this.booking = { bookingID: 0, bookingTime: bookingDate };
-
-    this.step = 2;
-  }
-
-  getUserData(organisator: User, users: Array<Array<string>>) {
-    this.organisator = organisator;
-    this.extraUsers = users;
-    this.company.name = organisator.company.name;
-    this.onSubmit();
-  }
 
   constructor(
     private bookingService: BookingService,
@@ -91,6 +49,48 @@ export class MainBookingComponent implements OnInit {
     private userService: UserService
   ) {
     this.step = 1;
+  }
+
+  SelectDate(date: Date, time: string) {
+    console.log();
+    date
+      .toString()
+      .split('-')
+      .forEach((date) => {
+        this.dateArray.push(Number(date));
+      });
+
+    time
+      .toString()
+      .split(':')
+      .forEach((time) => {
+        this.timeArray.push(Number(time));
+      });
+
+    var bookingDate: Date = new Date(
+      this.dateArray[0],
+      this.dateArray[1] - 1,
+      this.dateArray[2],
+      this.timeArray[0] + 1,
+      this.timeArray[1]
+    );
+
+    this.booking = { bookingID: 0, bookingTime: bookingDate };
+    console.log(this.booking);
+  }
+
+  TakeStep() {
+    switch (this.step) {
+      case 1:
+        this.SelectDate(this.date, this.time);
+        this.step = 2;
+        break;
+      case 2:
+        this.step = 1;
+        break;
+      default:
+        this.step = 1;
+    }
   }
 
   ngOnInit(): void {}
@@ -101,7 +101,32 @@ export class MainBookingComponent implements OnInit {
     this.postUser$.unsubscribe();
   }
 
-  onSubmit() {
+  async postOrganisator() {
+    this.postUser$ = (
+      await this.userService.postUser(this.organisator)
+    ).subscribe(
+      (result) => {
+        console.log('Submitted organisator');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  async postCompany() {
+    this.postCompany$ = this.companyService.postCompany(this.company).subscribe(
+      (result) => {
+        console.log('Submitted company');
+        this.companyId = result.companyID;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  async onSubmit() {
     this.postBooking$ = this.bookingService.postBooking(this.booking).subscribe(
       (result) => {
         console.log('Submitted booking');
@@ -111,35 +136,30 @@ export class MainBookingComponent implements OnInit {
       }
     );
 
-    this.postCompany$ = this.companyService.postCompany(this.company).subscribe(
-      (result) => {
-        console.log('Submitted company');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.company.name = this.companyName;
+    this.organisator.company.name = this.companyName;
+
+    await this.postCompany();
 
     this.organisator.companyID = this.companyId;
-    this.organisator.company = this.company;
+    this.organisator.company.companyID = this.companyId;
+    this.organisator.company.name = this.companyName;
+    this.organisator.firstName = this.firstname;
+    this.organisator.lastName = this.lastname;
+    this.organisator.email = this.email;
+    this.organisator.password = this.password;
+
+    await this.postOrganisator();
 
     this.user = this.organisator;
+    console.log('user: ' + this.user);
 
-    this.postUser$ = this.userService.postUser(this.organisator).subscribe(
-      (result) => {
-        console.log('Submitted organisator');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    this.extraUsers.forEach((element) => {
+    this.extraUsers.forEach(async (element) => {
       // 2 = email - 0= firstname - 1 = lastname
       this.user.email = element[2];
       this.user.firstName = element[0];
       this.user.lastName = element[1];
-      this.postUser$ = this.userService.postUser(this.user).subscribe(
+      this.postUser$ = (await this.userService.postUser(this.user)).subscribe(
         (result) => {
           console.log('Submitted user');
         },
@@ -148,5 +168,51 @@ export class MainBookingComponent implements OnInit {
         }
       );
     });
+  }
+
+  /*
+  Date Picker
+  */
+
+  nextStep() {
+    this.step = 2;
+  }
+
+  /*
+  Booking Form
+  */
+
+  @Input() companyName: string = '';
+  @Input() email: string = '';
+  @Input() firstname: string = '';
+  @Input() lastname: string = '';
+  @Input() password: string = '';
+  @Input() extraEmail: string = '';
+  @Input() extraFirstName: string = '';
+  @Input() extraLastName: string = '';
+
+  // Add extra User
+  @Input() addExtraUser() {
+    this.extraUsers.push([
+      this.extraFirstName,
+      this.extraLastName,
+      this.extraEmail,
+    ]);
+
+    this.extraEmail = '';
+    this.extraFirstName = '';
+    this.extraLastName = '';
+  }
+
+  // Remove extra user
+  @Input() deleteExtraUser(msg: string) {
+    let index = 0;
+    this.extraUsers.forEach((element) => {
+      if (element[0] == msg) {
+        index = this.extraUsers.indexOf(element);
+      }
+    });
+
+    this.extraUsers.splice(index, 1);
   }
 }

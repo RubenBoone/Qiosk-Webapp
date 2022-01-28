@@ -1,6 +1,90 @@
 <div class="container mt-5">
-  <form action="">
-  <app-date-picker *ngIf="step == 1" (goToNextStep)="goToNextStep($event.date, $event.time)"></app-date-picker>
-  <app-booking-form *ngIf="step == 2" (getUserData)="getUserData($event.organisator, $event.users)"></app-booking-form>
+  <form (ngSubmit)="onSubmit()" bookingForm="ngForm">
+    <div class="my-5" *ngIf="(step == 1)">
+      <h2>Maak een boeking - Stap 1</h2>
+        <div class="mb-3">
+          <label for="day" class="form-label">Welke dag?</label>
+          <input type="date" class="form-control" id="day" aria-describedby="dayHelp" name="date" [(ngModel)]="this.date">
+          <small class="text-muted">De bezette momenten zijn niet selecteerbaar.</small>
+        </div>
+        <div class="mb-3">
+          <label for="time" class="form-label">Om hoelaat?</label>
+          <input type="time" class="form-control" id="time" name="time" [(ngModel)]="this.time">
+          <small class="text-muted">Een rondleiding duurt ongeveer 3u.</small>
+        </div>
+        <button type="button" class="btn btn-secondary" (click)="TakeStep()">Volgende</button>
+    </div>
+  <div class="my-5" *ngIf="(step == 2)">
+    <div class="row d-flex justify-content-between">
+      <h2>Maak een boeking - Stap 2</h2>
+      <button class="btn btn-secondary">Terug</button>
+    </div>
+      <form class="row">
+        <div class="col-md-5 col-sm-12">
+        <div class="mb-3">
+          <label for="company" class="form-label">Bedrijfsnaam</label>
+          <input type="text" class="form-control" id="company" name="company" aria-describedby="company" [(ngModel)]="this.companyName" required>
+
+        </div>
+        <div class="mb-3">
+          <label for="firstname" class="form-label">Uw voornaam</label>
+          <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="this.firstname" required>
+        </div>
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Uw achternaam</label>
+          <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="this.lastname" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Uw email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="this.email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Gezamelijk wachtwoord</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="this.password" required>
+          <small class="text-muted">Dit wachtwoord moet worden gedeeld met de extra personen.</small>
+        </div>
+        <div>
+          <button type="submit" (click)="onSubmit()" class="btn btn-secondary">Boeken</button>
+        </div>
+    </div>
+    <div class="col-md-7 col-sm-12">
+      <div>
+        <div class="row ">
+          <div class="mb-3 col-md-3">
+            <label for="text" class="form-label">Voornaam</label>
+            <input type="text" class="form-control" id="extraFirstName" name="extraFirstName" [(ngModel)]="this.extraFirstName">
+          </div>
+          <div class="mb-3 col-md-3">
+            <label for="text" class="form-label">Achternaam</label>
+            <input type="text" class="form-control" id="extraLastName" name="extraLastName" [(ngModel)]="this.extraLastName">
+          </div>
+          <div class="mb-3 col-md-3">
+            <label for="text" class="form-label">Email</label>
+            <input type="text" class="form-control" id="extraEmail" name="extraEmail" [(ngModel)]="this.extraEmail">
+          </div>
+          <div class="mb-3 col-md-3 d-flex align-items-end">
+            <button class="btn btn-secondary" (click)="addExtraUser()"><i class="fas fa-plus"></i></button>
+          </div>
+      </div>
+    </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Naam</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of extraUsers; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user[0] + " " + user[1]}}</td>
+            <td>{{user[2]}}</td>
+            <td><button type="button" class="btn btn-sm btn-light delete" (click)="deleteExtraUser(user[0])"><i class="far fa-trash-alt"></i></button></td>
+         </tr>
+        </tbody>
+      </table>
+      </div>
 </form>
 </div>

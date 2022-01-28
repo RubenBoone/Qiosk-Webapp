@@ -23,7 +23,7 @@ export class CompanyService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Company>(this.baseUrl + '/companies', company, {
+    return this.httpClient.post<Company>(this.baseUrl + 'companies', company, {
       headers: headers,
     });
   }
