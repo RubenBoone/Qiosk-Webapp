@@ -11,43 +11,40 @@
                 <div class="form-group">
                     <label for="firstName">Voornaam</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Voornaam" [(ngModel)]="user.firstName"
-                        #name="ngModel" required>
-                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Voornaam moet ingevuld zijn</div>
+                        #firstName="ngModel" required>
+                    <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">Voornaam moet ingevuld zijn</div>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Achternaam</label>
                     <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Achternaam" [(ngModel)]="user.lastName"
-                        #name="ngModel" required>
-                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Achternaam moet ingevuld zijn</div>
+                        #lastName="ngModel" required>
+                    <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">Achternaam moet ingevuld zijn</div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="user.email"
-                        #name="ngModel" required>
-                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Email moet ingevuld zijn</div>
+                        #email="ngModel" required>
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email moet ingevuld zijn</div>
                 </div>
                 <div class="form-group">
                     <label for="isActive">Actief</label>
-                    <input type="checkbox" class="form-control" id="isActive" name="isActive" [(ngModel)]="user.isActive"
+                    <input type="checkbox" class="form-control checkbox" id="isActive" name="isActive" [(ngModel)]="user.isActive"
                         #name="ngModel">
                 </div>
                 <div class="form-group">
                     <label for="isAdmin">Admin</label>
-                    <input type="checkbox" class="form-control" id="isAdmin" name="isAdmin" [(ngModel)]="user.isAdmin"
+                    <input type="checkbox" class="form-control checkbox" id="isAdmin" name="isAdmin" [(ngModel)]="user.isAdmin"
                         #name="ngModel">
                 </div>
                 <!--Select met FK companys-->
                 <div class="form-group">
-                    <label for="company">Bedrijf</label>
-                    <select name="company" ngModel>
-                        <option value="" disabled>Choose a state</option>
-                        <option>
-                          {{ user.company }}
+                    <label for="company">Bedrijf</label><br>
+                    <select class="form-select" name="company" [(ngModel)]="user.company.companyID" required>
+                        <option disabled value="0">Kies een bedrijf</option>
+                        <option *ngFor="let company of companys" value="{{company.companyID}}">
+                          {{ company.name }}
                         </option>
                       </select>
-                    <input type="" class="form-control" id="firstname" name="firstname" placeholder="Voornaam" [(ngModel)]="user.company"
-                        #name="ngModel" required>
-                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Er moet een bedrijf gekozen zijn</div>
                 </div>
                 <button type="submit" class="btn btn-green mb-5" *ngIf="isAdd" [disabled]="!userForm.form.valid || isSubmitted">Voeg toe</button>
                 <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!userForm.form.valid || isSubmitted">Opslaan</button>

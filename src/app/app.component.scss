@@ -1,9 +1,7 @@
-body {
-  overflow: hidden !important;
+body{
+  margin-top: 50px !important;
 }
 
-@media screen and (max-width: 576px) {
-  body {
-    overflow: auto !important;
-  }
+.test{
+  padding-bottom: 30px;
 }

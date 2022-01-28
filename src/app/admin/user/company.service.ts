@@ -12,11 +12,11 @@ export class CompanyService {
   constructor(private httpClient: HttpClient) {}
 
   getCompanies(): Observable<Company[]> {
-    return this.httpClient.get<Company[]>(this.baseUrl + 'Companies');
+    return this.httpClient.get<Company[]>(this.baseUrl + 'companies');
   }
 
   getCompany(id: number): Observable<Company> {
-    return this.httpClient.get<Company>(this.baseUrl + 'Companies/' + id);
+    return this.httpClient.get<Company>(this.baseUrl + 'companies/' + id);
   }
 
   postCompany(company: Company): Observable<Company> {
