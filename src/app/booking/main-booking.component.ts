@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Booking } from '../admin/bookings-table/booking';
-import { BookingService } from '../admin/bookings-table/booking.service';
 import { Company } from '../admin/user/users-table/company';
 import { CompanyService } from '../admin/user/company.service';
 import { User } from '../admin/user/users-table/user';
 import { UserService } from '../admin/user/user.service';
+import { BookingService } from '../admin/booking/bookings-table/booking.service';
+import { Booking } from '../admin/booking/bookings-table/booking';
 
 @Component({
   selector: 'app-main-booking',
@@ -14,8 +14,13 @@ import { UserService } from '../admin/user/user.service';
 })
 export class MainBookingComponent implements OnInit {
   @Input() step: number = 2;
-  @Input() booking: Booking = { bookingID: 0, bookingTime: new Date() };
   company: Company = { companyID: 0, name: '' };
+  @Input() booking: Booking = {
+    bookingID: 0,
+    bookingTime: new Date(),
+    companyId: 0,
+    company: this.company,
+  };
   user: User = {
     userID: 0,
     firstName: '',
@@ -73,7 +78,12 @@ export class MainBookingComponent implements OnInit {
       this.time[1]
     );
 
-    this.booking = { bookingID: 0, bookingTime: bookingDate };
+    this.booking = {
+      bookingID: 0,
+      bookingTime: bookingDate,
+      companyId: 0,
+      company: this.company,
+    };
 
     this.step = 2;
   }
