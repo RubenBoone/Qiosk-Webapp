@@ -23,7 +23,7 @@ export class TagService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Tag>(this.baseUrl + '/tags', tag, {
+    return this.httpClient.post<Tag>(this.baseUrl + 'tags', tag, {
       headers: headers,
     });
   }

@@ -19,7 +19,10 @@ export class EncryptionService {
     var reverseArray = charArray.reverse();
     var reversedArray = reverseArray.join('');
     var pwd = gibber2.toUpperCase() + reversedArray.toUpperCase() + gibber;
-    return pwd;
+    var x1=pwd.substring(13,pwd.length)
+    var x2=pwd.substring(0,13)
+
+    return (x1+x2+"==");
 
   }
 }

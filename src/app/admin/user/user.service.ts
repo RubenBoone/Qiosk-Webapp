@@ -24,7 +24,7 @@ export class UserService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<User>(this.baseUrl + '/users', user, {
+    return this.httpClient.post<User>(this.baseUrl + 'users', user, {
       headers: headers,
     });
   }
