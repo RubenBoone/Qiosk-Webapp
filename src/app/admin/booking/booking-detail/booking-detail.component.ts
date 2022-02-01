@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Company } from '../../user/users-table/company';
-import { Booking } from '../bookings-table/booking';
-import { BookingService } from '../bookings-table/booking.service';
+import { Booking } from '../booking-table/booking';
+import { BookingService } from '../booking.service';
 import { UserBooking } from '../user-booking';
 
 @Component({

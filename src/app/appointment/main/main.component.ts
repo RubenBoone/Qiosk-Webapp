@@ -1,22 +1,19 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Company } from '../admin/user/users-table/company';
-import { User } from '../admin/user/users-table/user';
-import { UserService } from '../admin/user/user.service';
-<<<<<<< HEAD
-import { BookingService } from '../admin/booking/bookings-table/booking.service';
-import { Booking } from '../admin/booking/bookings-table/booking';
-import { UserBooking } from '../admin/booking/user-booking';
-=======
-import { EncryptionService } from '../admin/security/encryption.service';
->>>>>>> ad34c69d3c89a3bee0007485a91139d92e1224ed
+import { BookingService } from 'src/app/admin/booking/booking.service';
+import { Booking } from 'src/app/admin/booking/booking-table/booking';
+import { UserBooking } from 'src/app/admin/booking/user-booking';
+import { EncryptionService } from 'src/app/admin/security/encryption.service';
+import { User } from 'src/app/admin/user/users-table/user';
+import { UserService } from 'src/app/admin/user/user.service';
+import { Company } from 'src/app/admin/user/users-table/company';
 
 @Component({
-  selector: 'app-main-booking',
-  templateUrl: './main-booking.component.html',
-  styleUrls: ['./main-booking.component.scss'],
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
 })
-export class MainBookingComponent implements OnInit {
+export class MainComponent implements OnInit {
   @Input() step: number = 2;
   company: Company = { companyID: 0, name: '' };
   userBooking: UserBooking = { userID: 0, bookingID: 0, userBookingID: 0 };
@@ -104,7 +101,7 @@ export class MainBookingComponent implements OnInit {
   constructor(
     private bookingService: BookingService,
     private userService: UserService,
-    private encryptionService:EncryptionService
+    private encryptionService: EncryptionService
   ) {
     this.step = 1;
   }
@@ -127,7 +124,7 @@ export class MainBookingComponent implements OnInit {
     );
 
     this.user = this.organisator;
-    this.user.password=this.encryptionService.encrypt(this.user.password)
+    this.user.password = this.encryptionService.encrypt(this.user.password);
 
     this.postUser$ = this.userService.postUser(this.organisator).subscribe(
       (result) => {
@@ -137,8 +134,8 @@ export class MainBookingComponent implements OnInit {
           this.user.email = element[2];
           this.user.firstName = element[0];
           this.user.lastName = element[1];
-          this.user.companyID= result.companyID;
-          this.user.company=result.company;
+          this.user.companyID = result.companyID;
+          this.user.company = result.company;
           this.postUser$ = this.userService.postUser(this.user).subscribe(
             (result) => {
               console.log('Submitted user');

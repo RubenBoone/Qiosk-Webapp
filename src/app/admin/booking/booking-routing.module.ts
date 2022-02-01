@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
-import { BookingsTableComponent } from './bookings-table/bookings-table.component';
+import { BookingTableComponent } from './booking-table/booking-table.component';
 
 const routes: Routes = [
-  { path: '', component: BookingsTableComponent },
+  { path: '', component: BookingTableComponent },
   { path: ':id', component: BookingDetailComponent },
 ];
 
