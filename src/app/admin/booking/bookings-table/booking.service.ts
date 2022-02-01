@@ -20,7 +20,7 @@ export class BookingService {
   }
 
   getBooking(id: number): Observable<Booking> {
-    return this.httpClient.get<Booking>(this.baseUrl + 'Bookings/' + id);
+    return this.httpClient.get<Booking>(this.baseUrl + 'bookings/' + id);
   }
 
   postBooking(booking: Booking): Observable<Booking> {

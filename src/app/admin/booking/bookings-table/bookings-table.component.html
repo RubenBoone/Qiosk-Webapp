@@ -24,6 +24,7 @@
         <thead class="bg-secondary">
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Bedrijf</th>
             <th scope="col">Datum</th>
             <th class="text-center" scope="col">Wijzigen</th>
           </tr>
@@ -32,6 +33,7 @@
         <tbody>
           <tr *ngFor="let booking of bookings; let i = index">
             <td>{{booking.bookingID}}</td>
+            <td>{{booking.company.name}}</td>
             <td>{{booking.bookingTime | date : "dd/mm/yyyy hh:mm"}}</td>
             <td class="text-center">
               <div class="btn-group">

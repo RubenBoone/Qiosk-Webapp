@@ -16,16 +16,18 @@ import { Company } from '../../user/users-table/company';
 export class BookingsTableComponent implements OnInit, OnDestroy {
   bookings: Booking[] = [];
   userBookings: UserBooking[] = [];
-  bookings$: Subscription = new Subscription();
   userBookings$: Subscription = new Subscription();
+  bookings$: Subscription = new Subscription();
   deleteBooking$: Subscription = new Subscription();
 
   company: Company = { name: '', companyID: 0 };
+  userBooking: UserBooking = { userID: 0, bookingID: 0, userBookingID: 0 };
   booking: Booking = {
     bookingID: 0,
     bookingTime: new Date(),
     companyId: 0,
     company: this.company,
+    userBooking: this.userBooking,
   };
   errorMessage: string = '';
 
@@ -40,8 +42,6 @@ export class BookingsTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dtOptions = { language: LanguageApp.dutch_datatables };
     this.getBookings();
-    this.getUserBookings();
-    console.log(this.bookings, this.userBookings);
   }
 
   ngOnDestroy(): void {
@@ -78,11 +78,8 @@ export class BookingsTableComponent implements OnInit, OnDestroy {
       this.bookings = result;
     });
   }
-  getUserBookings() {
-    this.userBookings$ = this.userBookingService
-      .getUserBookings()
-      .subscribe((result) => {
-        this.userBookings = result;
-      });
+
+  goToDetails(id: number) {
+    this.router.navigate(['admin/booking/', id]);
   }
 }

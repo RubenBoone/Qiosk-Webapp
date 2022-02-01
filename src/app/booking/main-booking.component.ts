@@ -6,6 +6,7 @@ import { User } from '../admin/user/users-table/user';
 import { UserService } from '../admin/user/user.service';
 import { BookingService } from '../admin/booking/bookings-table/booking.service';
 import { Booking } from '../admin/booking/bookings-table/booking';
+import { UserBooking } from '../admin/booking/user-booking';
 
 @Component({
   selector: 'app-main-booking',
@@ -15,11 +16,13 @@ import { Booking } from '../admin/booking/bookings-table/booking';
 export class MainBookingComponent implements OnInit {
   @Input() step: number = 2;
   company: Company = { companyID: 0, name: '' };
+  userBooking: UserBooking = { userID: 0, bookingID: 0, userBookingID: 0 };
   @Input() booking: Booking = {
     bookingID: 0,
     bookingTime: new Date(),
     companyId: 0,
     company: this.company,
+    userBooking: this.userBooking,
   };
   user: User = {
     userID: 0,
@@ -83,6 +86,7 @@ export class MainBookingComponent implements OnInit {
       bookingTime: bookingDate,
       companyId: 0,
       company: this.company,
+      userBooking: this.userBooking,
     };
 
     this.step = 2;
