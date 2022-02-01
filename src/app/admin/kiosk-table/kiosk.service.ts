@@ -24,7 +24,7 @@ export class KioskService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Kiosk>(this.baseUrl + '/kiosks', kiosk, {
+    return this.httpClient.post<Kiosk>(this.baseUrl + 'kiosks', kiosk, {
       headers: headers,
     });
   }
