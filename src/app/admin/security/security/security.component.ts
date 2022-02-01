@@ -50,6 +50,7 @@ export class SecurityComponent implements OnInit {
   }
   onSubmit(): void {
     this.isSubmitted = true;
+    console.log(this.encryptionService.encrypt(this.user.password))
     if (this.isLogin) {
       this.authService
         .authenticate(

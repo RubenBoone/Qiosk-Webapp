@@ -24,7 +24,7 @@ export class BookingService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Booking>(this.baseUrl + '/bookings', booking, {
+    return this.httpClient.post<Booking>(this.baseUrl + 'bookings', booking, {
       headers: headers,
     });
   }

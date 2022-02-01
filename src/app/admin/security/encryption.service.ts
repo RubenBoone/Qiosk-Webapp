@@ -18,9 +18,12 @@ export class EncryptionService {
     var charArray = password.split('');
     var reverseArray = charArray.reverse();
     var reversedArray = reverseArray.join('');
-    var pwd = gibber2.toUpperCase() + reversedArray.toUpperCase() + gibber;
-    return pwd;
-
+    var pwd = gibber2+ reversedArray + gibber;
+    var x1=pwd.substring(13,pwd.length)
+    var x2=pwd.substring(0,13)
+    var x3 = x1+x2+"==";
+    var x4=x3.substring(2,x3.length-2)+x3.substring(x3.length-2,x3.length)
+    return x4;
   }
 }
 

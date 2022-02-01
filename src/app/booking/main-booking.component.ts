@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs';
 import { Booking } from '../admin/bookings-table/booking';
 import { BookingService } from '../admin/bookings-table/booking.service';
 import { Company } from '../admin/user/users-table/company';
-import { CompanyService } from '../admin/user/company.service';
 import { User } from '../admin/user/users-table/user';
 import { UserService } from '../admin/user/user.service';
+import { EncryptionService } from '../admin/security/encryption.service';
 
 @Component({
   selector: 'app-main-booking',
@@ -46,7 +46,6 @@ export class MainBookingComponent implements OnInit {
   extraUsers: Array<Array<string>> = [];
 
   postBooking$: Subscription = new Subscription();
-  postCompany$: Subscription = new Subscription();
   postUser$: Subscription = new Subscription();
 
   goToNextStep(date: Date, time: string) {
@@ -87,8 +86,8 @@ export class MainBookingComponent implements OnInit {
 
   constructor(
     private bookingService: BookingService,
-    private companyService: CompanyService,
-    private userService: UserService
+    private userService: UserService,
+    private encryptionService:EncryptionService
   ) {
     this.step = 1;
   }
@@ -97,7 +96,6 @@ export class MainBookingComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.postBooking$.unsubscribe();
-    this.postCompany$.unsubscribe();
     this.postUser$.unsubscribe();
   }
 
@@ -111,42 +109,32 @@ export class MainBookingComponent implements OnInit {
       }
     );
 
-    this.postCompany$ = this.companyService.postCompany(this.company).subscribe(
-      (result) => {
-        console.log('Submitted company');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    this.organisator.companyID = this.companyId;
-    this.organisator.company = this.company;
-
     this.user = this.organisator;
+    this.user.password=this.encryptionService.encrypt(this.user.password)
 
     this.postUser$ = this.userService.postUser(this.organisator).subscribe(
       (result) => {
         console.log('Submitted organisator');
+        this.extraUsers.forEach((element) => {
+          // 2 = email - 0= firstname - 1 = lastname
+          this.user.email = element[2];
+          this.user.firstName = element[0];
+          this.user.lastName = element[1];
+          this.user.companyID= result.companyID;
+          this.user.company=result.company;
+          this.postUser$ = this.userService.postUser(this.user).subscribe(
+            (result) => {
+              console.log('Submitted user');
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        });
       },
       (error) => {
         console.log(error);
       }
     );
-
-    this.extraUsers.forEach((element) => {
-      // 2 = email - 0= firstname - 1 = lastname
-      this.user.email = element[2];
-      this.user.firstName = element[0];
-      this.user.lastName = element[1];
-      this.postUser$ = this.userService.postUser(this.user).subscribe(
-        (result) => {
-          console.log('Submitted user');
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    });
   }
 }
