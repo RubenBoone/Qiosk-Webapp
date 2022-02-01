@@ -1,11 +1,15 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Booking } from '../admin/bookings-table/booking';
-import { BookingService } from '../admin/bookings-table/booking.service';
 import { Company } from '../admin/user/users-table/company';
 import { User } from '../admin/user/users-table/user';
 import { UserService } from '../admin/user/user.service';
+<<<<<<< HEAD
+import { BookingService } from '../admin/booking/bookings-table/booking.service';
+import { Booking } from '../admin/booking/bookings-table/booking';
+import { UserBooking } from '../admin/booking/user-booking';
+=======
 import { EncryptionService } from '../admin/security/encryption.service';
+>>>>>>> ad34c69d3c89a3bee0007485a91139d92e1224ed
 
 @Component({
   selector: 'app-main-booking',
@@ -14,8 +18,15 @@ import { EncryptionService } from '../admin/security/encryption.service';
 })
 export class MainBookingComponent implements OnInit {
   @Input() step: number = 2;
-  @Input() booking: Booking = { bookingID: 0, bookingTime: new Date() };
   company: Company = { companyID: 0, name: '' };
+  userBooking: UserBooking = { userID: 0, bookingID: 0, userBookingID: 0 };
+  @Input() booking: Booking = {
+    bookingID: 0,
+    bookingTime: new Date(),
+    companyId: 0,
+    company: this.company,
+    userBooking: this.userBooking,
+  };
   user: User = {
     userID: 0,
     firstName: '',
@@ -72,7 +83,13 @@ export class MainBookingComponent implements OnInit {
       this.time[1]
     );
 
-    this.booking = { bookingID: 0, bookingTime: bookingDate };
+    this.booking = {
+      bookingID: 0,
+      bookingTime: bookingDate,
+      companyId: 0,
+      company: this.company,
+      userBooking: this.userBooking,
+    };
 
     this.step = 2;
   }

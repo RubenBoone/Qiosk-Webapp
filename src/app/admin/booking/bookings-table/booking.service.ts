@@ -13,11 +13,14 @@ export class BookingService {
   constructor(private httpClient: HttpClient) {}
 
   getBookings(): Observable<Booking[]> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
     return this.httpClient.get<Booking[]>(this.baseUrl + 'bookings');
   }
 
   getBooking(id: number): Observable<Booking> {
-    return this.httpClient.get<Booking>(this.baseUrl + 'Bookings/' + id);
+    return this.httpClient.get<Booking>(this.baseUrl + 'bookings/' + id);
   }
 
   postBooking(booking: Booking): Observable<Booking> {

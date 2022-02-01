@@ -1,6 +1,4 @@
-import { Time } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Booking } from 'src/app/admin/bookings-table/booking';
 
 @Component({
   selector: 'app-date-picker',
