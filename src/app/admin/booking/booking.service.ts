@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 
-import { Booking } from './booking';
+import { Booking } from './booking-table/booking';
 
 @Injectable({
   providedIn: 'root',

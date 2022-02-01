@@ -1,19 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BookingService } from './booking.service';
-import { Booking } from './booking';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
-import { Router } from '@angular/router';
-import { UserBookingService } from '../user-booking.service';
-import { UserBooking } from '../user-booking';
 import { Company } from '../../user/users-table/company';
+import { BookingService } from '../booking.service';
+import { UserBooking } from '../user-booking';
+import { UserBookingService } from '../user-booking.service';
+import { Booking } from './booking';
 
 @Component({
-  selector: 'app-bookings-table',
-  templateUrl: './bookings-table.component.html',
-  styleUrls: ['./bookings-table.component.scss'],
+  selector: 'app-booking-table',
+  templateUrl: './booking-table.component.html',
+  styleUrls: ['./booking-table.component.scss'],
 })
-export class BookingsTableComponent implements OnInit, OnDestroy {
+export class BookingTableComponent implements OnInit, OnDestroy {
   bookings: Booking[] = [];
   userBookings: UserBooking[] = [];
   userBookings$: Subscription = new Subscription();

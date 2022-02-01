@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingService } from './booking/bookings-table/booking.service';
+import { BookingService } from './booking/booking.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { KioskService } from './kiosk-table/kiosk.service';
 import { AuthGuard } from './security/auth.guard';
@@ -49,6 +49,12 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     KioskService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true,
+    },
+    BookingService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,
