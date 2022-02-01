@@ -3,14 +3,10 @@ import { Subscription } from 'rxjs';
 import { Company } from '../admin/user/users-table/company';
 import { User } from '../admin/user/users-table/user';
 import { UserService } from '../admin/user/user.service';
-<<<<<<< HEAD
 import { BookingService } from '../admin/booking/bookings-table/booking.service';
 import { Booking } from '../admin/booking/bookings-table/booking';
 import { UserBooking } from '../admin/booking/user-booking';
-=======
 import { EncryptionService } from '../admin/security/encryption.service';
->>>>>>> ad34c69d3c89a3bee0007485a91139d92e1224ed
-
 @Component({
   selector: 'app-main-booking',
   templateUrl: './main-booking.component.html',
