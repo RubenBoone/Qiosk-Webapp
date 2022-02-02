@@ -1,5 +1,5 @@
 export interface Kiosk {
-  kioksID: number;
+  kioskID: number;
   name: string;
   description: string;
   coordinate: number;

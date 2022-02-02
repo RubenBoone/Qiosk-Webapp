@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/shared/global-constants';
-import { Kiosk } from '../kiosk-table/kiosk';
+import { Kiosk } from '../kiosk/kiosk-table/kiosk';
 
 @Injectable({
   providedIn: 'root'
