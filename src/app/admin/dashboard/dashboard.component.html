@@ -4,43 +4,34 @@
       <h2>Aankomende boekingen</h2>
       <table class="table table-striped bg-secondary">
         <thead>
-          <tr>
+          <tr class="border">
             <th>Bedrijf</th>
             <th>Datum</th>
-            <th>Aantal</th>
+            <th>#<span class="text-secondary">_</span>bezoekers </th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Thomas More</td>
-            <td>17/02/2022</td>
-            <td>5</td>
-          </tr>
-          <tr>
-            <td>Thomas More</td>
-            <td>17/02/2022</td>
-            <td>5</td>
+        <tbody class="border bg-white">
+          <tr *ngFor="let booking of bookings">
+            <td>{{booking.company.name}}</td>
+            <td class="border">{{booking.bookingTime}}</td>
+            <td>{{booking.numberOfVisitors}}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="col-md-6 col-sm-12">
-      <h2>Tags</h2>
+      <h2>Kiosks</h2>
       <table class="table table-striped bg-secondary">
         <thead>
           <tr>
-            <th>Tag nummer</th>
-            <th>Gelinkt aan</th>
+            <th>Naam</th>
+            <th>Beschrijving</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>QioskD2</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>-</td>
+        <tbody class="bg-white border">
+          <tr *ngFor="let kiosk of kiosks">
+            <td class="border">{{kiosk.name}}</td>
+            <td>{{kiosk.description}}</td>
           </tr>
         </tbody>
       </table>
