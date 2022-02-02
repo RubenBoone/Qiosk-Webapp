@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Kiosk } from '../kiosk-table/kiosk';
+import { Kiosk } from '../kiosk/kiosk-table/kiosk';
 import { Booking } from './booking';
 import { BookingService } from './booking.service';
 import { KioskService } from './kiosk.service';

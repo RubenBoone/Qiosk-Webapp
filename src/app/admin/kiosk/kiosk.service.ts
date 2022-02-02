@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 
-import { Kiosk } from './kiosk';
+import { Kiosk } from './kiosk-table/kiosk';
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +12,15 @@ export class KioskService {
   baseUrl = GlobalConstants.apiURL;
   constructor(private httpClient: HttpClient) {}
 
-  getBookings(): Observable<Kiosk[]> {
-    return this.httpClient.get<Kiosk[]>(this.baseUrl + 'Kiosks');
+  getKiosks(): Observable<Kiosk[]> {
+    return this.httpClient.get<Kiosk[]>(this.baseUrl + 'kiosks');
   }
 
-  getBooking(id: number): Observable<Kiosk> {
-    return this.httpClient.get<Kiosk>(this.baseUrl + 'Kiosks/' + id);
+  getKiosk(id: number): Observable<Kiosk> {
+    return this.httpClient.get<Kiosk>(this.baseUrl + 'kiosks/' + id);
   }
 
-  postBooking(kiosk: Kiosk): Observable<Kiosk> {
+  postKiosk(kiosk: Kiosk): Observable<Kiosk> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -29,16 +29,16 @@ export class KioskService {
     });
   }
 
-  putBooking(id: number, kiosk: Kiosk): Observable<Kiosk> {
+  putKiosk(id: number, kiosk: Kiosk): Observable<Kiosk> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.put<Kiosk>(this.baseUrl + 'Kiosks/' + id, kiosk, {
+    return this.httpClient.put<Kiosk>(this.baseUrl + 'kiosks/' + id, kiosk, {
       headers: headers,
     });
   }
 
-  deleteBooking(id: number): Observable<Kiosk> {
-    return this.httpClient.delete<Kiosk>(this.baseUrl + 'Kiosks/' + id);
+  deleteKiosk(id: number): Observable<Kiosk> {
+    return this.httpClient.delete<Kiosk>(this.baseUrl + 'kiosks/' + id);
   }
 }

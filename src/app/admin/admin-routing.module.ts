@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingService } from './booking/booking.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { KioskService } from './kiosk-table/kiosk.service';
+import { KioskService } from './kiosk/kiosk.service';
 import { AuthGuard } from './security/auth.guard';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { SecurityComponent } from './security/security/security.component';
@@ -42,18 +42,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
+  {
+    path: 'kiosks',
+    loadChildren: () => import('./kiosk/kiosk.module').then((m) => m.KioskModule),
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [
-    KioskService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: SecurityInterceptor,
-      multi: true,
-    },
     BookingService,
     {
       provide: HTTP_INTERCEPTORS,
