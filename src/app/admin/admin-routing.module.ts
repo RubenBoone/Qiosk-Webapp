@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingService } from './booking/booking.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { KioskService } from './kiosk/kiosk.service';
 import { AuthGuard } from './security/auth.guard';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { SecurityComponent } from './security/security/security.component';
@@ -30,9 +29,15 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
   },
   {
-    path: 'booking',
+    path: 'bookings',
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingModule),
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'companies',
+    loadChildren: () => import('./company/company.module').then((m) => m.CompanyModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },

@@ -9,10 +9,13 @@
         <a class="nav-link" routerLink="/booking">Maak een boeking</a>
       </li>
       <li  *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/admin/booking">Boekingen</a>
+        <a class="nav-link" routerLink="/admin/bookings">Boekingen</a>
       </li>
       <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/users">Gebruikers</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a class="nav-link" routerLink="/admin/companies">Bedrijven</a>
       </li>
       <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/kiosks">Kiosks</a>

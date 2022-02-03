@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row my-4">
+        <div class="col-lg-10 col-12 offset-lg-1">
+          <div class="justify-content-between flex-column flex-md-row">
+            <h2 class="mb-0">Bedrijven beheren</h2>
+            <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+                {{errorMessage}}
+            </div>
+            <br>
+            <form (ngSubmit)="onSubmit()" #companyForm="ngForm">
+                <div class="form-group">
+                    <label for="code">Naam</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="name" [(ngModel)]="company.name"
+                        #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Naam moet ingevuld zijn</div>
+                </div>
+                <button type="submit" class="btn btn-green" *ngIf="isAdd" [disabled]="!companyForm.form.valid || isSubmitted">Voeg toe</button>
+                <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!companyForm.form.valid || isSubmitted">Opslaan</button>
+            </form>
+        </div>
+    </div>
+</div>

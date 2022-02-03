@@ -49,14 +49,10 @@ export class BookingTableComponent implements OnInit, OnDestroy {
     this.deleteBooking$.unsubscribe();
   }
 
-  add() {
-    this.router.navigate(['admin/bookings/form'], { state: { mode: 'add' } });
-  }
-
-  edit(id: number) {
+  detail(id: number) {
     //Navigate to form in edit mode
-    this.router.navigate(['admin/bookings/form'], {
-      state: { id: id, mode: 'edit' },
+    this.router.navigate(['admin/bookings/detail'], {
+      state: { id: id },
     });
   }
 

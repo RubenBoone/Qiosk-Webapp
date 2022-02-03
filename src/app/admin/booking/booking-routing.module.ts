@@ -5,7 +5,7 @@ import { BookingTableComponent } from './booking-table/booking-table.component';
 
 const routes: Routes = [
   { path: '', component: BookingTableComponent },
-  { path: ':id', component: BookingDetailComponent },
+  { path: 'detail', component: BookingDetailComponent },
 ];
 
 @NgModule({
