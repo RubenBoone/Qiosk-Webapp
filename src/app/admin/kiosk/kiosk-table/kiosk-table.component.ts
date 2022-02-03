@@ -20,7 +20,7 @@ export class KioskTableComponent implements OnInit, OnDestroy {
   // Extra
   dtOptions: DataTables.Settings = {};
 
-  kiosk: Kiosk = {kioskID: 0, name: "", description: "", coordinate: 0};
+  kiosk: Kiosk = {kioskID: 0, name: "", description: "", coordinate: ""};
   errorMessage: string = '';
 
   constructor(private router: Router, private kioskService: KioskService) { }

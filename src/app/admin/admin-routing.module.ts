@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
   },
   {
-    path: 'users',
+    path: 'gebruikers',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
@@ -29,14 +29,14 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
   },
   {
-    path: 'bookings',
+    path: 'boekingen',
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
   {
-    path: 'companies',
+    path: 'bedrijven',
     loadChildren: () => import('./company/company.module').then((m) => m.CompanyModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],

@@ -48,7 +48,7 @@ export class CompanyFormComponent implements OnInit, OnDestroy {
     if (this.isAdd) {
       this.postCompany$ = this.companyService.postCompany(this.company).subscribe(result => {
                 //all went well
-                this.router.navigateByUrl("/admin/companies");
+                this.router.navigateByUrl("/admin/bedrijven");
               },
               error => {
                 this.errorMessage = error.message;
@@ -57,7 +57,7 @@ export class CompanyFormComponent implements OnInit, OnDestroy {
     if (this.isEdit) {
       this.putCompany$ = this.companyService.putCompany(this.companyID, this.company).subscribe(result => {
                 //all went well
-                this.router.navigateByUrl("/admin/companies");
+                this.router.navigateByUrl("/admin/bedrijven");
               },
               error => {
                 this.errorMessage = error.message;

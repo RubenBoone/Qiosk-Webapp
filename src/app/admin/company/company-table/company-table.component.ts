@@ -38,12 +38,12 @@ export class CompanyTableComponent implements OnInit, OnDestroy {
   }
 
   add() {
-    this.router.navigate(['admin/companies/form'], {state: {mode: "add"}});
+    this.router.navigate(['admin/bedrijven/form'], {state: {mode: "add"}});
   }
 
   edit(id: number) {
     //Navigate to form in edit mode
-    this.router.navigate(['admin/companies/form'], {state: {id: id, mode: 'edit'}});
+    this.router.navigate(['admin/bedrijven/form'], {state: {id: id, mode: 'edit'}});
   }
 
   delete(id: number) {

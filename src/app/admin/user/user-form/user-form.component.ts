@@ -52,7 +52,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     if (this.isAdd) {
       this.postUser$ = this.userService.postUser(this.user).subscribe(result => {
                 //all went well
-                this.router.navigateByUrl("/admin/users");
+                this.router.navigateByUrl("/admin/gebruikers");
               },
               error => {
                 this.errorMessage = error.message;
@@ -61,7 +61,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     if (this.isEdit) {
       this.putUser$ = this.userService.putUser(this.userID, this.user).subscribe(result => {
                 //all went well
-                this.router.navigateByUrl("/admin/users");
+                this.router.navigateByUrl("/admin/gebruikers");
               },
               error => {
                 this.errorMessage = error.message;
@@ -74,4 +74,10 @@ export class UserFormComponent implements OnInit, OnDestroy {
       this.companys = result;
     })
   }
+
+  onChange(newValue: number) {
+    console.log(newValue);
+    this.user.companyID = newValue;  // don't forget to update the model here
+    // ... do other stuff here ...
+}
 }

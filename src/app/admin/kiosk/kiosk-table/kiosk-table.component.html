@@ -25,6 +25,7 @@
             <th scope="col">#</th>
             <th scope="col">Naam</th>
             <th scope="col">Beschrijving</th>
+            <th scope="col">Coördinaten (x,y,radius)</th>
             <th class="text-center" scope="col">Wijzigen</th>
           </tr>
           </thead>
@@ -34,6 +35,7 @@
             <td>{{i + 1}}</td>
             <td>{{kiosk.name}}</td>
             <td>{{kiosk.description}}</td>
+            <td>{{kiosk.coordinate}}</td>
             <td class="text-center">
               <div class="btn-group">
                 <button type="button" class="btn btn-green" (click)="edit(kiosk.kioskID)"><i class="far fa-edit"></i></button>

@@ -38,12 +38,12 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   }
 
   add() {
-    this.router.navigate(['admin/users/form'], {state: {mode: "add"}});
+    this.router.navigate(['admin/gebruikers/form'], {state: {mode: "add"}});
   }
 
   edit(id: number) {
     //Navigate to form in edit mode
-    this.router.navigate(['admin/users/form'], {state: {id: id, mode: 'edit'}});
+    this.router.navigate(['admin/gebruikers/form'], {state: {id: id, mode: 'edit'}});
   }
 
   delete(id: number) {

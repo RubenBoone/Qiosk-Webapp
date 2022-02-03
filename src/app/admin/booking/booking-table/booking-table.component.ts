@@ -51,7 +51,7 @@ export class BookingTableComponent implements OnInit, OnDestroy {
 
   detail(id: number) {
     //Navigate to form in edit mode
-    this.router.navigate(['admin/bookings/detail'], {
+    this.router.navigate(['admin/boekingen/detail'], {
       state: { id: id },
     });
   }
@@ -76,6 +76,6 @@ export class BookingTableComponent implements OnInit, OnDestroy {
   }
 
   goToDetails(id: number) {
-    this.router.navigate(['admin/booking/', id]);
+    this.router.navigate(['admin/boeking/', id]);
   }
 }
