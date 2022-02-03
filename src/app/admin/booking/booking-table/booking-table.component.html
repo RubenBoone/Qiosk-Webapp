@@ -3,12 +3,7 @@
     <div class="col-lg-10 col-12 offset-lg-1">
       <div class="d-flex justify-content-between flex-column flex-md-row text-center">
         <h2 class="mb-0">Boekingen beheren</h2>
-        <div class="mx-auto mx-md-0">
-          <button type="button" (click)="add()" class="btn btn-green addBtn d-flex align-items-center">Nieuwe boeking <span
-              class=" ml-2 material-icons-outlined">
-              <!--add_circle_outline -->
-            </span></button>
-        </div>
+        
       </div>
       <hr class="mb-0 mt-2">
       <!--<app-loading *ngIf="loading$ | async"></app-loading>
@@ -37,8 +32,8 @@
             <td>{{booking.bookingTime | date : "dd/mm/yyyy hh:mm"}}</td>
             <td class="text-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-green" (click)="edit(booking.bookingID)"><i
-                    class="far fa-edit"></i></button>
+                <button type="button" class="btn btn-info" (click)="detail(booking.bookingID)"><i
+                    class="far fa-eye"></i></button>
                 <button type="button" class="btn btn-red" (click)="delete(booking.bookingID)"><i
                     class="far fa-trash-alt"></i></button>
               </div>

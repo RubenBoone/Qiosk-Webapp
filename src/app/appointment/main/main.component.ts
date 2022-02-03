@@ -16,7 +16,7 @@ import { Company } from 'src/app/admin/user/users-table/company';
 export class MainComponent implements OnInit {
   @Input() step: number = 2;
   company: Company = { companyID: 0, name: '' };
-  userBooking: UserBooking = { userID: 0, bookingID: 0, userBookingID: 0 };
+  userBooking: UserBooking = { userID: 0, bookingID: 0, userBookingID: 0};
   @Input() booking: Booking = {
     bookingID: 0,
     bookingTime: new Date(),

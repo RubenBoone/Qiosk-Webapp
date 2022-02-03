@@ -1,3 +1,14 @@
-<div class="container mt-5">
-  <h1>Booking on {{booking.bookingTime | date: "dd/mm/yyyy"}} at {{booking.bookingTime | date: "hh:mm"}}</h1>
+<div class="container-fluid">
+  <div class="row my-4">
+      <div class="col-lg-10 col-12 offset-lg-1">
+        <div class="justify-content-between flex-column flex-md-row">
+          <h2 class="mb-0 d-flex">Boeking details <span class="ml-auto">{{booking.bookingTime | date: "dd/mm/yyyy"}} - {{booking.bookingTime | date: "hh:mm"}}u</span></h2>
+        </div>
+          <hr class="mb-0 mt-2">
+          <br>
+          <h3>Bedrijf:  {{ booking.company.name }}</h3>
+          
+          <button type="button" class="btn btn-primary"><a href="admin/bookings" class="text-white">Terug</a></button>
+      </div>
+  </div>
 </div>
