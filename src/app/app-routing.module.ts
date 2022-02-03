@@ -6,7 +6,7 @@ import { MainComponent } from './appointment/main/main.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'booking', component: MainComponent },
+  { path: 'boeking', component: MainComponent },
   {
     path: 'admin',
     loadChildren: () =>

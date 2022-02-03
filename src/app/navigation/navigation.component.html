@@ -6,16 +6,16 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true } " data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/booking">Maak een boeking</a>
+        <a class="nav-link" routerLink="/boeking">Maak een boeking</a>
       </li>
       <li  *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/admin/bookings">Boekingen</a>
+        <a class="nav-link" routerLink="/admin/boekingen">Boekingen</a>
       </li>
       <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/admin/users">Gebruikers</a>
+        <a class="nav-link" routerLink="/admin/gebruikers">Gebruikers</a>
       </li>
       <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/admin/companies">Bedrijven</a>
+        <a class="nav-link" routerLink="/admin/bedrijven">Bedrijven</a>
       </li>
       <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/admin/kiosks">Kiosks</a>

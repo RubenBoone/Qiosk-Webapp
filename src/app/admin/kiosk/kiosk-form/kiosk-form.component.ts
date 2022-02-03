@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Kiosk } from '../kiosk-table/kiosk';
@@ -14,7 +15,7 @@ export class KioskFormComponent implements OnInit {
   isEdit: boolean = false;
   kioskID: number = 0;
 
-  kiosk: Kiosk = { kioskID: 0, name: "", description: "", coordinate: 0 };
+  kiosk: Kiosk = { kioskID: 0, name: "", description: "", coordinate: "" };
 
   isSubmitted: boolean = false;
   errorMessage: string = "";
@@ -43,7 +44,10 @@ export class KioskFormComponent implements OnInit {
     this.putKiosk$.unsubscribe();
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    var regEx = /^((\d+)((,))((\d+))((,))(\d+))?$/;
+    if (!form.value.coordinate.match(regEx)) return alert("Coördinaat is niet van het type x,y,radius")
+
     this.isSubmitted = true;
     if (this.isAdd) {
       this.postKiosk$ = this.kioskService.postKiosk(this.kiosk).subscribe(result => {
