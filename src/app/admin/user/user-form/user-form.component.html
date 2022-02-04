@@ -32,6 +32,12 @@
                         #email="ngModel" required>
                     <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email moet ingevuld zijn / juist ingevuld zijn</div>
                 </div>
+                <div class="form-group" *ngIf="isAdd">
+                    <label for="password">Wachtwoord</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord" [(ngModel)]="user.password"
+                        #password="ngModel" required minlength="5">
+                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Wachtwoord moet ingevuld zijn en minstens 5 karakters lang zijn</div>
+                </div>
                 <div class="form-group">
                     <label for="isActive">Actief</label>
                     <input type="checkbox" class="form-control checkbox" id="isActive" name="isActive" [(ngModel)]="user.isActive"
