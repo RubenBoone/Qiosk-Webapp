@@ -7,6 +7,7 @@ import { EncryptionService } from 'src/app/admin/security/encryption.service';
 import { User } from 'src/app/admin/user/users-table/user';
 import { UserService } from 'src/app/admin/user/user.service';
 import { Company } from 'src/app/admin/user/users-table/company';
+import { UserbookingService } from '../userbooking.service';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +21,7 @@ export class MainComponent implements OnInit {
   @Input() booking: Booking = {
     bookingID: 0,
     bookingTime: new Date(),
-    companyId: 0,
+    companyId: this.company.companyID,
     company: this.company,
     userBooking: this.userBooking,
   };
@@ -55,6 +56,7 @@ export class MainComponent implements OnInit {
 
   postBooking$: Subscription = new Subscription();
   postUser$: Subscription = new Subscription();
+  postUserBooking$: Subscription = new Subscription();
 
   goToNextStep(date: Date, time: string) {
     console.log();
@@ -101,6 +103,7 @@ export class MainComponent implements OnInit {
   constructor(
     private bookingService: BookingService,
     private userService: UserService,
+    private userBookingService: UserbookingService,
     private encryptionService: EncryptionService
   ) {
     this.step = 1;
@@ -111,24 +114,28 @@ export class MainComponent implements OnInit {
   ngOnDestroy(): void {
     this.postBooking$.unsubscribe();
     this.postUser$.unsubscribe();
+    this.postUserBooking$.unsubscribe();
   }
 
   onSubmit() {
     this.postBooking$ = this.bookingService.postBooking(this.booking).subscribe(
       (result) => {
         console.log('Submitted booking');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    this.user = this.organisator;
-    this.user.password = this.encryptionService.encrypt(this.user.password);
-
-    this.postUser$ = this.userService.postUser(this.organisator).subscribe(
-      (result) => {
+        this.userBooking.bookingID=result.bookingID
+        //org
+        this.organisator.companyID=result.companyId
+        this.organisator.company=result.company
+        this.organisator.password = this.encryptionService.encrypt(this.organisator.password);
+        this.user = this.organisator;
+       //post org
+        this.postUser$ = this.userService.postUser(this.organisator).subscribe(
+         async (result) => {
         console.log('Submitted organisator');
+        //relatie
+        this.userBooking.userID=result.userID;
+        console.log(this.userBooking)
+        this.postUserBooking$ =await this.userBookingService.postUserBooking(this.userBooking).subscribe(
+          (result) => {console.log('relatie initiated')})
         this.extraUsers.forEach((element) => {
           // 2 = email - 0= firstname - 1 = lastname
           this.user.email = element[2];
@@ -137,8 +144,11 @@ export class MainComponent implements OnInit {
           this.user.companyID = result.companyID;
           this.user.company = result.company;
           this.postUser$ = this.userService.postUser(this.user).subscribe(
-            (result) => {
+            async (result) => {
               console.log('Submitted user');
+              this.userBooking.userID=result.userID
+              this.postUserBooking$ =await this.userBookingService.postUserBooking(this.userBooking).subscribe(
+              (result) => {console.log('relatie initiated')})
             },
             (error) => {
               console.log(error);
@@ -150,5 +160,12 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
   }
 }
