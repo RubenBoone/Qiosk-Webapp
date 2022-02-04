@@ -17,13 +17,13 @@ body{
   zoom: 90%;
   overflow-x: hidden;
   overflow-y: auto;
+  height: 100%;
 }
  html {
    font-family: $font-family-text !important;
    line-height: 1.15;
    -webkit-text-size-adjust: 100%;
    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-   height: 100%;
  }
 
 .color-text, p, h1, h2, h3, h4, h5, h6{
