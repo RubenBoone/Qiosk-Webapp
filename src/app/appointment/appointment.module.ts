@@ -5,10 +5,21 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { SharedModule } from '../shared/shared.module';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { UserbookingService } from './userbooking.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SecurityInterceptor } from '../admin/security/security.interceptor';
 
 @NgModule({
   declarations: [MainComponent, BookingFormComponent, DatePickerComponent, ConfirmationComponent],
   imports: [SharedModule],
   exports: [MainComponent, BookingFormComponent, DatePickerComponent],
+  providers: [
+    UserbookingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AppointmentModule {}
