@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { EncryptionService } from '../../security/encryption.service';
 import { CompanyService } from '../company.service';
 import { UserService } from '../user.service';
 import { Company } from '../users-table/company';
@@ -26,10 +28,12 @@ export class UserFormComponent implements OnInit, OnDestroy {
   postUser$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
 
-  constructor(private router: Router, private userService: UserService, private companyService: CompanyService) {
+  constructor(private router: Router, private userService: UserService, private companyService: CompanyService, private encryptionService: EncryptionService,
+    ) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.userID = +this.router.getCurrentNavigation()?.extras.state?.id;
+    
 
     if (this.userID != null && this.userID > 0) {
       this.user$ = this.userService.getUserById(this.userID).subscribe(result => this.user = result);
@@ -47,9 +51,13 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.putUser$.unsubscribe();
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    if (form.value.companyID.match(0)) return alert("Selecteer een bedrijf")
+
     this.isSubmitted = true;
     if (this.isAdd) {
+      this.user.password = this.encryptionService.encrypt(this.user.password)
+
       this.postUser$ = this.userService.postUser(this.user).subscribe(result => {
                 //all went well
                 this.router.navigateByUrl("/admin/gebruikers");
