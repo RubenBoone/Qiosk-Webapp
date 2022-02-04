@@ -7,7 +7,7 @@
                 {{errorMessage}}
             </div>
             <br>
-            <form class="mb-5" (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <form class="mb-5" (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
                 <div class="form-group">
                     <label for="firstName">Voornaam</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Voornaam" [(ngModel)]="user.firstName"
@@ -32,12 +32,6 @@
                         #email="ngModel" required>
                     <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email moet ingevuld zijn / juist ingevuld zijn</div>
                 </div>
-                <div class="form-group" *ngIf="isAdd">
-                    <label for="password">Wachtwoord</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord" [(ngModel)]="user.password"
-                        #password="ngModel" required minlength="5">
-                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Wachtwoord moet ingevuld zijn en minstens 5 karakters lang zijn</div>
-                </div>
                 <div class="form-group">
                     <label for="isActive">Actief</label>
                     <input type="checkbox" class="form-control checkbox" id="isActive" name="isActive" [(ngModel)]="user.isActive"
@@ -50,13 +44,14 @@
                 </div>
                 <!--Select met FK companys-->
                 <div class="form-group">
-                    <label for="company">Bedrijf</label><br>
-                    <select class="form-select" name="company" [(ngModel)]="user.company.companyID" (ngModelChange)="onChange($event)" required>
+                    <label for="companyID">Bedrijf</label><br>
+                    <select class="form-select" name="companyID" id="companyID" #select="ngModel" [(ngModel)]="user.company.companyID" (ngModelChange)="onChange($event)" required>
                         <option disabled value="0">Kies een bedrijf</option>
-                        <option *ngFor="let company of companys" value="{{company.companyID}}">
+                        <option *ngFor="let company of companys" value="{{company.companyID}}" required>
                           {{ company.name }}
                         </option>
                       </select>
+                      <div [hidden]="select.value > 0" class="alert alert-danger">Je moet een bedrijf kiezen</div>
                 </div>
                 <button type="submit" class="btn btn-green mb-5" *ngIf="isAdd" [disabled]="!userForm.form.valid || isSubmitted">Voeg toe</button>
                 <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!userForm.form.valid || isSubmitted">Opslaan</button>
