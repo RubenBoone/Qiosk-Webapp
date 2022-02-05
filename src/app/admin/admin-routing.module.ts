@@ -37,7 +37,8 @@ const routes: Routes = [
   },
   {
     path: 'bedrijven',
-    loadChildren: () => import('./company/company.module').then((m) => m.CompanyModule),
+    loadChildren: () =>
+      import('./company/company.module').then((m) => m.CompanyModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
@@ -49,10 +50,18 @@ const routes: Routes = [
   },
   {
     path: 'kiosks',
-    loadChildren: () => import('./kiosk/kiosk.module').then((m) => m.KioskModule),
+    loadChildren: () =>
+      import('./kiosk/kiosk.module').then((m) => m.KioskModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-  }
+  },
+  {
+    path: 'tagusers',
+    loadChildren: () =>
+      import('./tag-user/tag-user.module').then((m) => m.TagUserModule),
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+  },
 ];
 
 @NgModule({
