@@ -8,10 +8,15 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { UserbookingService } from './userbooking.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from '../admin/security/security.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [MainComponent, BookingFormComponent, DatePickerComponent, ConfirmationComponent],
-  imports: [SharedModule],
+  imports: [SharedModule,MatDatepickerModule,MatNativeDateModule,MatFormFieldModule,MatInputModule,BrowserAnimationsModule],
   exports: [MainComponent, BookingFormComponent, DatePickerComponent],
   providers: [
     UserbookingService,

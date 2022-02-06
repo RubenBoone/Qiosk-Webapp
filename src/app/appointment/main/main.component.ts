@@ -59,8 +59,8 @@ export class MainComponent implements OnInit {
   postUserBooking$: Subscription = new Subscription();
 
   goToNextStep(date: Date, time: string) {
-    console.log();
-    date
+    console.log(date);
+    date.toLocaleDateString
       .toString()
       .split('-')
       .forEach((date) => {
@@ -75,9 +75,9 @@ export class MainComponent implements OnInit {
       });
 
     var bookingDate: Date = new Date(
-      this.date[0],
-      this.date[1] - 1,
-      this.date[2],
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
       this.time[0],
       this.time[1]
     );
@@ -118,6 +118,7 @@ export class MainComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.booking)
     this.postBooking$ = this.bookingService.postBooking(this.booking).subscribe(
       (result) => {
         console.log('Submitted booking');

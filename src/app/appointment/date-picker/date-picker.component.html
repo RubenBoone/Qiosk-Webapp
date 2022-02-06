@@ -2,15 +2,29 @@
   <h2>Maak een boeking - Stap 1</h2>
     <div class="mb-3">
       <label for="day" class="form-label">Welke dag?</label>
-      <input type="date" min="04/02/2022" class="form-control" id="day" aria-describedby="dayHelp" name="date" [(ngModel)]="this.date" required>
-      <small class="text-muted">De bezette momenten zijn niet selecteerbaar.</small>
+      <div>
+      <input matInput
+      [matDatepicker]="picker"
+      [min]="minDate"
+      [max]="maxDate"
+      [matDatepickerFilter]="myFilter"
+      (dateInput)="dateSelected()"
+      [(ngModel)]="this.date" required
+      class="form-control w-50 d-inline-flex" placeholder="Kies een datum">
+      <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker [(ngModel)]="this.date" ngDefaultControl></mat-datepicker>
+
+    </div>
+    <small class="text-muted">De bezette momenten zijn niet selecteerbaar.</small>
     </div>
     <div class="mb-3">
       <label for="time" class="form-label">Om hoelaat?</label>
       <div class="d-flex">
-        <button onclick="" [disabled]="!negen" class="mr-2 form-control w-25">9:00</button>
-        <button onclick="" [disabled]="!een" een class=" form-control w-25">13:00</button>
+        <button (click)="timeSelected(9)" [disabled]="!negen" class="{{time=='09:00'?'btn-secondary':''}} mr-4 ml-2 form-control w-25">9:00</button>
+        <button (click)="timeSelected(1)" [disabled]="!een" een class="{{time=='13:00'?'btn-secondary':''}} form-control w-25">13:00</button>
       </div>      <small class="text-muted">Een rondleiding duurt ongeveer 3u.</small>
     </div>
     <button type="button" class="btn btn-secondary" (click)="nextStep()">Volgende</button>
-</div>
+    <div *ngIf="errorMessage!=''" class="text-secondary">{{errorMessage}}</div>
+
+  </div>
