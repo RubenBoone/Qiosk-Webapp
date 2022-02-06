@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tag } from '../../tag/tag-table/tag';
+import { TagService } from '../../tag/tag.service';
+import { UserService } from '../../user/user.service';
 import { Company } from '../../user/users-table/company';
 import { User } from '../../user/users-table/user';
 import { UserTag } from '../taguser-table/taguser';
@@ -17,6 +19,9 @@ export class TaguserFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   userTagID: number = 0;
+
+  users: User[] = [];
+  tags: Tag[] = [];
 
   company: Company = { companyID: 0, name: '' };
   tag: Tag = { tagID: 0, code: '' };
@@ -46,7 +51,15 @@ export class TaguserFormComponent implements OnInit {
   postuserTag$: Subscription = new Subscription();
   putuserTag$: Subscription = new Subscription();
 
-  constructor(private router: Router, private userTagService: TaguserService) {
+  tag$: Subscription = new Subscription();
+  users$: Subscription = new Subscription();
+
+  constructor(
+    private router: Router,
+    private userTagService: TaguserService,
+    private tagService: TagService,
+    private userService: UserService
+  ) {
     this.isAdd =
       this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
     this.isEdit =
@@ -59,10 +72,43 @@ export class TaguserFormComponent implements OnInit {
         .subscribe((result) => (this.userTag = result));
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsers();
+    this.getTags();
+  }
   ngOnDestroy(): void {
     this.userTag$.unsubscribe();
   }
 
-  onSubmit(form: NgForm) {}
+  getUsers() {
+    this.users$ = this.userService.getUsers().subscribe((result) => {
+      this.users = result;
+    });
+  }
+
+  getTags() {
+    this.tag$ = this.tagService.getTags().subscribe((result) => {
+      this.tags = result;
+    });
+  }
+
+  onChange(newValue: number) {
+    this.userTag.userID = newValue; // don't forget to update the model here
+    // ... do other stuff here ...
+  }
+
+  onChangeTag(newValue: number) {
+    this.userTag.tagID = newValue; // don't forget to update the model here
+    // ... do other stuff here ...
+  }
+
+  onSubmit(form: NgForm) {
+    this.putuserTag$ = this.userTagService
+      .putUserTag(this.userTagID, this.userTag)
+      .subscribe((result) => {
+        console.log('usertag Changed');
+      });
+
+    this.router.navigate(['admin/tagusers']);
+  }
 }

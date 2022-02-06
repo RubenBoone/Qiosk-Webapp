@@ -3,11 +3,6 @@
     <div class="col-lg-10 col-12 offset-lg-1">
       <div class="d-flex justify-content-between flex-column flex-md-row text-center">
         <h2 class="mb-0">Tags aan bezoeker verbinden</h2>
-        <div class="mx-auto mx-md-0">
-          <button type="button" (click)="add()" class="btn btn-green addBtn d-flex align-items-center" >Nieuwe kiosk <span class=" ml-2 material-icons-outlined">
-<!--add_circle_outline -->
-</span></button>
-        </div>
       </div>
       <hr class="mb-0 mt-2">
       <!--<app-loading *ngIf="loading$ | async"></app-loading>
@@ -15,7 +10,7 @@
         <div class="text-muted alert alert-primary">Geen artikelen gevonden</div>
       </div>  -->
       <div *ngIf="tagUsers.length == 0" class="text-center mt-4">
-        <div class="text-muted alert alert-primary">Geen kiosks gevonden</div>
+        <div class="text-muted alert alert-primary">Geen gelinkte tags gevonden</div>
       </div>
     </div>
     <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">

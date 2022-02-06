@@ -30,7 +30,11 @@ export class TaguserTableComponent implements OnInit {
     this.tagUsers$.unsubscribe();
   }
 
-  add() {}
+  add() {
+    this.router.navigate(['admin/tagusers/form'], {
+      state: { mode: 'add' },
+    });
+  }
   edit(id: number) {
     this.router.navigate(['admin/tagusers/form'], {
       state: { id: id, mode: 'edit' },
