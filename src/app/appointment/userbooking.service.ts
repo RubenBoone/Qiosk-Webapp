@@ -19,4 +19,8 @@ export class UserbookingService {
       headers: headers,
     });
   }
+  getAvailableTimesForDate(d:string ): Observable<number[]> {
+    return this.httpClient.get<number[]>(this.baseUrl + "bookings/slots/"+d);
+  }
+
 }
