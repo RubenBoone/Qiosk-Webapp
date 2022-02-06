@@ -7,6 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class DatePickerComponent implements OnInit {
   @Output() goToNextStep = new EventEmitter<{ date: Date; time: string }>();
+
+  negen :boolean=true;
+  een:boolean=true;
+  times: Number[]=[1,2];
   constructor() {}
 
   @Input() date: Date = new Date();
