@@ -8,6 +8,7 @@ import { User } from 'src/app/admin/user/users-table/user';
 import { UserService } from 'src/app/admin/user/user.service';
 import { Company } from 'src/app/admin/user/users-table/company';
 import { UserbookingService } from '../userbooking.service';
+import { MailService } from 'src/app/shared/mail/mail.service';
 
 @Component({
   selector: 'app-main',
@@ -104,7 +105,8 @@ export class MainComponent implements OnInit {
     private bookingService: BookingService,
     private userService: UserService,
     private userBookingService: UserbookingService,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private mailService : MailService
   ) {
     this.step = 1;
   }
@@ -132,6 +134,7 @@ export class MainComponent implements OnInit {
         this.postUser$ = this.userService.postUser(this.organisator).subscribe(
          async (result) => {
         console.log('Submitted organisator');
+        this.composeAndSendMail(result)
         //relatie
         this.userBooking.userID=result.userID;
         console.log(this.userBooking)
@@ -147,6 +150,7 @@ export class MainComponent implements OnInit {
           this.postUser$ = this.userService.postUser(this.user).subscribe(
             async (result) => {
               console.log('Submitted user');
+              this.composeAndSendMail(result)
               this.userBooking.userID=result.userID
               this.postUserBooking$ =await this.userBookingService.postUserBooking(this.userBooking).subscribe(
               (result) => {console.log('relatie initiated')})
@@ -168,5 +172,30 @@ export class MainComponent implements OnInit {
     );
 
 
+  }
+  composeAndSendMail(user :User) {
+    var msg = "<style>" +
+      "</style>" +
+      "<div>" +
+      "<i style='color: green' class='far fa-check-circle fa-7x'></i>" +
+      "</div>" +
+      "<h1>Hierbij een bevestiging van uw bezoek aan het Experience Center van Van Roey!</h1>" +
+      "<p class='mt-3 text-center'>  </p>";
+
+
+    this.mailService.sendMail({
+
+      "recipientEmail": user.email,
+      "recipientName": user.firstName+" "+user.lastName,
+      "subject": "Van Roey Exp. Center reserveringsbevestiging; ",
+      "message": msg
+    }).subscribe(
+      data => {
+        console.log("Mail sent: ", data)
+      },
+      error => {
+        console.log("Error: ", error)
+      }
+    )
   }
 }
