@@ -14,11 +14,11 @@ export class DatePickerComponent implements OnInit {
   een:boolean=false;
   times: Number[]=[];
   constructor(private userBookingService : UserbookingService) {}
-  minDate = new Date();
+  minDate = new Date(new Date().setDate(new Date().getDate() + 1));
   maxDate =new Date(new Date().setFullYear(new Date().getFullYear() + 2));
   errorMessage :String="";
   bookingSlots$:Subscription=new Subscription();
-  @Input() date: Date = (new Date().getDay()==0)?new Date(new Date().setDate(new Date().getDate()+1)):((new Date().getDay()==6)?new Date(new Date().setDate(new Date().getDate()+2)):new Date());
+  @Input() date: Date = (new Date().getDay()==0)?new Date(new Date().setDate(new Date().getDate()+1)):((new Date().getDay()==6)?new Date(new Date().setDate(new Date().getDate()+2)):((new Date().getDay()==5)?new Date(new Date().setDate(new Date().getDate()+3)):new Date(new Date().setDate(new Date().getDate() + 1))));
   @Input() time: string = '';
 
   nextStep() {
