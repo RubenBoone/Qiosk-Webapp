@@ -1,0 +1,42 @@
+<div class="container-fluid test">
+  <div class="row my-4">
+    <div class="col-lg-10 col-12 offset-lg-1">
+      <div class="d-flex justify-content-between flex-column flex-md-row text-center">
+        <h2 class="mb-0">Tags aan bezoeker verbinden</h2>
+      </div>
+      <hr class="mb-0 mt-2">
+      <!--<app-loading *ngIf="loading$ | async"></app-loading>
+      <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen artikelen gevonden</div>
+      </div>  -->
+      <div *ngIf="tagUsers.length == 0" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen gelinkte tags gevonden</div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
+      <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf=" tagUsers.length > 0">
+        <thead class="bg-secondary">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Bezoeker</th>
+          <th class="text-center" scope="col">Wijzigen</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let tagUser of tagUsers; let i = index" >
+          <td>{{i + 1}}</td>
+          <td>{{tagUser.tag.code}}</td>
+          <td>{{tagUser.user.firstName + " " + tagUser.user.lastName}}</td>
+          <td class="text-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-green" (click)="edit(tagUser.userTagID)"><i class="far fa-edit"></i></button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

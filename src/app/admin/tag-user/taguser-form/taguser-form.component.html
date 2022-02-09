@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row my-4">
+      <div class="col-lg-10 col-12 offset-lg-1">
+        <div class="justify-content-between flex-column flex-md-row">
+          <h2 class="mb-0">Tag linken</h2>
+          <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+              {{errorMessage}}
+          </div>
+          <br>
+          <form (ngSubmit)="onSubmit(tagUserForm)" #tagUserForm="ngForm">
+              <div class="form-group">
+                <label for="users">Bezoeker</label>
+                <select class="custom-select custom-select" name="users" id="users" #select="ngModel" [(ngModel)]="userTag.userID" (ngModelChange)="onChange($event)" required>
+                  <option value="0">Geen bezoeker</option>
+                  <option *ngFor="let user of users" value="{{user.userID}}" required>
+                    {{ user.firstName + " " + user.lastName + " (" + user.company.name + ")" }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tag">Tag</label>
+                <select class="custom-select custom-select" name="tag" id="tag" #select="ngModel" [(ngModel)]="userTag.tagID" (ngModelChange)="onChangeTag($event)" required>
+                  <option [selected]="tag.tagID == userTag.tagID" *ngFor="let tag of tags" value="{{tag.tagID}}" required>
+                    {{ tag.code }}
+                  </option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-green" *ngIf="isAdd" [disabled]="!tagUserForm.form.valid || isSubmitted">Voeg toe</button>
+              <button type="submit" class="btn btn-green" *ngIf="isEdit" [disabled]="!tagUserForm.form.valid || isSubmitted">Opslaan</button>
+          </form>
+      </div>
+  </div>
+</div>
