@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { Company } from '../../user/users-table/company';
@@ -14,6 +15,9 @@ import { Booking } from './booking';
   styleUrls: ['./booking-table.component.scss'],
 })
 export class BookingTableComponent implements OnInit, OnDestroy {
+   // font awesome icons
+   faSort=faSort
+
   bookings: Booking[] = [];
   userBookings: UserBooking[] = [];
   userBookings$: Subscription = new Subscription();

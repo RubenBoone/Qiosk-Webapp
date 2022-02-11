@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { TaguserService } from '../taguser.service';
@@ -11,6 +12,10 @@ import { UserTag } from './taguser';
   styleUrls: ['./taguser-table.component.scss'],
 })
 export class TaguserTableComponent implements OnInit {
+    // font awesome icons
+    faSort=faSort
+
+
   tagUsers: UserTag[] = [];
   tagUsers$: Subscription = new Subscription();
 

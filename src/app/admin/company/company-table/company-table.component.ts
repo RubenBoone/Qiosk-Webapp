@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { Company } from '../../user/users-table/company';
@@ -11,6 +12,9 @@ import { CompanyService } from '../company.service';
   styleUrls: ['./company-table.component.scss']
 })
 export class CompanyTableComponent implements OnInit, OnDestroy {
+    // font awesome icons
+    faSort=faSort
+
   companies: Company[] = [];
   companies$: Subscription = new Subscription();
   deleteCompany$: Subscription = new Subscription();

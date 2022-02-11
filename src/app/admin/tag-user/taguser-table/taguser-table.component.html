@@ -7,7 +7,7 @@
       <hr class="mb-0 mt-2">
       <!--<app-loading *ngIf="loading$ | async"></app-loading>
       <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
-        <div class="text-muted alert alert-primary">Geen artikelen gevonden</div>
+        <div class="text-muted alert alert-primary">Geen  gevonden</div>
       </div>  -->
       <div *ngIf="tagUsers.length == 0" class="text-center mt-4">
         <div class="text-muted alert alert-primary">Geen gelinkte tags gevonden</div>
@@ -19,7 +19,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Tag</th>
-          <th scope="col">Bezoeker</th>
+          <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Bezoeker</th>
           <th class="text-center" scope="col">Wijzigen</th>
         </tr>
         </thead>

@@ -1,17 +1,17 @@
 export class LanguageApp {
   public static dutch_datatables = {
-    "lengthMenu": "_MENU_ resultaten weergeven",
+    "lengthMenu": "_MENU_ per pagina weergeven",
     "zeroRecords": "Geen resultaten gevonden",
     "infoEmpty": "Geen resultaten om weer te geven",
-    "search": "Zoeken:",
+    "search": "Zoeken : ",
     "emptyTable": "Geen resultaten aanwezig in de tabel",
     "infoThousands": ".",
     "loadingRecords": "Een moment geduld aub - bezig met laden...",
     "paginate": {
-      "first": "Eerste",
-      "last": "Laatste",
-      "next": "Volgende",
-      "previous": "Vorige"
+      "first": " Eerste ",
+      "last": " Laatste ",
+      "next": " Volgende ",
+      "previous": " Vorige "
     },
     "aria": {
       "sortAscending": ": activeer om kolom oplopend te sorteren",
