@@ -54,12 +54,15 @@ export class MainComponent implements OnInit {
     company: this.company,
   };
   extraUsers: Array<Array<string>> = [];
-
+  d:Date=new Date();
+  t:string="";
   postBooking$: Subscription = new Subscription();
   postUser$: Subscription = new Subscription();
   postUserBooking$: Subscription = new Subscription();
 
   goToNextStep(date: Date, time: string) {
+    this.d=date;
+    this.t=time;
     console.log(date);
     date.toLocaleDateString
       .toString()
@@ -179,15 +182,17 @@ export class MainComponent implements OnInit {
       "<div>" +
       "<i style='color: green' class='far fa-check-circle fa-7x'></i>" +
       "</div>" +
-      "<h1>Hierbij een bevestiging van uw bezoek aan het Experience Center van Van Roey!</h1>" +
-      "<p class='mt-3 text-center'>  </p>";
+      "<p>Dag "+user.firstName+"</p>"+
+      "<p>Hierbij een bevestiging van uw bezoek aan het Experience Center van Van Roey!</p>" +
+      "<p class='mt-3 text-center'> <b> Wanneer:</b> "+this.d.toDateString() +" om "+this.t+" </p>"+
+      "<p class='mt-3 text-center'> <b>Waar:</b> Antwerpseweg 116H, 2440 Geel</p>";
 
 
     this.mailService.sendMail({
 
       "recipientEmail": user.email,
       "recipientName": user.firstName+" "+user.lastName,
-      "subject": "Van Roey Exp. Center reserveringsbevestiging; ",
+      "subject": "Van Roey Experience Center reservatie; ",
       "message": msg
     }).subscribe(
       data => {

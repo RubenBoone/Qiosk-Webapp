@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserbookingService } from '../userbooking.service';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-date-picker',
@@ -13,7 +14,9 @@ export class DatePickerComponent implements OnInit {
   negen :boolean=false;
   een:boolean=false;
   times: Number[]=[];
-  constructor(private userBookingService : UserbookingService) {}
+  constructor(private userBookingService : UserbookingService,private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('nl');
+  }
   minDate = new Date(new Date().setDate(new Date().getDate() + 1));
   maxDate =new Date(new Date().setFullYear(new Date().getFullYear() + 2));
   errorMessage :String="";

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { Tag } from './tag';
 import { TagService } from '../tag.service';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tag-table',
@@ -11,6 +12,9 @@ import { TagService } from '../tag.service';
   styleUrls: ['./tag-table.component.scss']
 })
 export class TagTableComponent implements OnInit, OnDestroy {
+  // font awesome icons
+  faSort=faSort
+
 
   tags: Tag[] = [];
   tags$: Subscription = new Subscription();

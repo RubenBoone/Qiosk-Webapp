@@ -9,7 +9,7 @@
   </span></button>
           </div>
         </div>
-        <hr class="mb-0 mt-2">  
+        <hr class="mb-0 mt-2">
         <!--<app-loading *ngIf="loading$ | async"></app-loading>
         <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
           <div class="text-muted alert alert-primary">Geen artikelen gevonden</div>
@@ -23,11 +23,11 @@
           <thead class="bg-secondary">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Code</th>
+            <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Code</th>
             <th class="text-center" scope="col">Wijzigen</th>
           </tr>
           </thead>
-  
+
           <tbody>
           <tr *ngFor="let tag of tags; let i = index" >
             <td>{{i + 1}}</td>

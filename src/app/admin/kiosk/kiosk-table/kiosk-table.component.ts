@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { KioskService } from '../kiosk.service';
@@ -11,6 +12,9 @@ import { Kiosk } from './kiosk';
   styleUrls: ['./kiosk-table.component.scss']
 })
 export class KioskTableComponent implements OnInit, OnDestroy {
+    // font awesome icons
+    faSort=faSort
+
   kiosks: Kiosk[] = [];
   kiosks$: Subscription = new Subscription();
   deleteKiosk$: Subscription = new Subscription();

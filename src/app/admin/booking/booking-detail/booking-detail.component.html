@@ -2,12 +2,12 @@
   <div class="row my-4">
       <div class="col-lg-10 col-12 offset-lg-1">
         <div class="justify-content-between flex-column flex-md-row">
-          <h2 class="mb-0 d-flex">Boeking details <span class="ml-auto">{{booking.bookingTime | date: "dd/mm/yyyy"}} - {{booking.bookingTime | date: "hh:mm"}}u</span></h2>
+          <h2 class="mb-0 d-flex">Boeking details <span class="ml-auto">{{booking.bookingTime | date: "dd MMM yyyy"}} - {{booking.bookingTime | date: "hh:mm"}}u</span></h2>
         </div>
           <hr class="mb-0 mt-2">
           <br>
           <h3>Bedrijf:  {{ booking.company.name }}</h3>
-          
+
           <button type="button" class="btn btn-primary"><a href="admin/boekingen" class="text-white">Terug</a></button>
       </div>
   </div>

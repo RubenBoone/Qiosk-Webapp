@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { User } from './user';
 import { UserService } from '../user.service';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users-table',
@@ -11,6 +12,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements OnInit, OnDestroy {
+
+  // font awesome icons
+  faSort=faSort
 
   users: User[] = [];
   users$: Subscription = new Subscription();
@@ -27,7 +31,9 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.dtOptions = {language: LanguageApp.dutch_datatables};
+    this.dtOptions = {
+      language: LanguageApp.dutch_datatables
+    };
     this.getUsers();
   }
   ngOnDestroy(): void {
