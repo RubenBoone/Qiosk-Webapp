@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 
-import { TaguserFormComponent } from './taguser-form/taguser-form.component';
 import { TaguserTableComponent } from './taguser-table/taguser-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from '../security/security.interceptor';
 import { TaguserService } from './taguser.service';
 import { TaguserRoutingModule } from './tag-user-routing.module';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { TagService } from '../tag/tag.service';
+import { UserService } from '../user/user.service';
 
 @NgModule({
-  declarations: [TaguserFormComponent, TaguserTableComponent],
+  declarations: [ TaguserTableComponent],
   imports: [SharedModule, TaguserRoutingModule],
-  exports: [TaguserFormComponent, TaguserTableComponent],
+  exports: [ TaguserTableComponent],
   providers: [
     TaguserService,
     {
@@ -19,6 +21,19 @@ import { TaguserRoutingModule } from './tag-user-routing.module';
       useClass: SecurityInterceptor,
       multi: true,
     },
+    TagService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true,
+    },
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true,
+    },
+    BsModalService
   ],
 })
 export class TagUserModule {}

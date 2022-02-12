@@ -38,3 +38,15 @@
   background-image: url("../assets/images/EC_lang.jpg");
   background-size: cover;
 }
+.showDiv{
+  opacity: 1 !important;
+  }
+  .step{
+  opacity: 0;
+  transition: 1s ease-in-out all;
+  }
+  .modal-backdrop
+{
+width: 100%!important;
+height: 100%!important;
+}
