@@ -6,14 +6,14 @@
         <thead>
           <tr class="border">
             <th>Bedrijf</th>
-            <th>Datum</th>
+            <th>Wanneer</th>
             <th>#<span class="text-secondary">_</span>bezoekers </th>
           </tr>
         </thead>
         <tbody class="border bg-white">
           <tr *ngFor="let booking of bookings">
             <td>{{booking.company.name}}</td>
-            <td class="border">{{booking.bookingTime}}</td>
+            <td class="border">{{booking.bookingTime| date: "dd MMM yyyy - hhumm" }}</td>
             <td>{{booking.numberOfVisitors}}</td>
           </tr>
         </tbody>

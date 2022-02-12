@@ -1,42 +1,73 @@
 <div class="container-fluid test">
   <div class="row my-4">
-    <div class="col-lg-10 col-12 offset-lg-1">
-      <div class="d-flex justify-content-between flex-column flex-md-row text-center">
-        <h2 class="mb-0">Tags aan bezoeker verbinden</h2>
-      </div>
-      <hr class="mb-0 mt-2">
+
+        <h2 class="col-12 mb-0 text-center">Tag toewijzen aan bezoeker</h2>
+
+      <hr class="col-12 mb-0 mt-2">
       <!--<app-loading *ngIf="loading$ | async"></app-loading>
       <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
         <div class="text-muted alert alert-primary">Geen  gevonden</div>
       </div>  -->
-      <div *ngIf="tagUsers.length == 0" class="text-center mt-4">
-        <div class="text-muted alert alert-primary">Geen gelinkte tags gevonden</div>
-      </div>
-    </div>
-    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
-      <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf=" tagUsers.length > 0">
-        <thead class="bg-secondary">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Tag</th>
-          <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Bezoeker</th>
-          <th class="text-center" scope="col">Wijzigen</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        <tr *ngFor="let tagUser of tagUsers; let i = index" >
-          <td>{{i + 1}}</td>
-          <td>{{tagUser.tag.code}}</td>
-          <td>{{tagUser.user.firstName + " " + tagUser.user.lastName}}</td>
-          <td class="text-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-green" (click)="edit(tagUser.userTagID)"><i class="far fa-edit"></i></button>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+    <div class="col-lg-6 col-11  m-auto">
+      <div class="form-group">
+        <label for="companyID">Bezoekers</label> <input type="text" (input)="onUserSearch()" [(ngModel)]="us" placeholder="Zoeken" class="form-control"><br>
+        <select class="form-select form-control" name="userID" id="userID" #select="ngModel" [(ngModel)]="userID" (ngModelChange)="onUserChange($event)" size="5">
+            <option disabled value="0">Selecteer bezoeker</option>
+            <option *ngFor="let user of usersF" value="{{user.userID}}" >
+              {{ user.firstName +" "+user.lastName }}
+            </option>
+          </select>
+    </div></div>
+    <div [class.showDiv]="userID>0" class="step col-lg-6 col-11 m-auto">
+      <div class="form-group">
+        <label for="companyID">Tags</label><input type="text" (input)="onTagSearch()" [(ngModel)]="ts"  placeholder="Zoeken" class="form-control"><br>
+        <select class="form-select form-control" name="tagID" id="tagID" #select="ngModel" [(ngModel)]="tagID" (ngModelChange)="onTagChange($event); openModal(template);" size="5">
+            <option disabled value="0">Selecteer tag</option>
+            <option *ngFor="let tag of tagsF" value="{{tag.tagID}}" >
+              {{ tag.code }}
+            </option>
+          </select>
+    </div>
+
     </div>
   </div>
+
 </div>
+  <!-- Modal-->
+  <ng-template #template class="modal">
+    <div class="modal-body text-center">
+      <p><b>{{u}}</b> {{actionType}} aan tag:<b>{{t}}</b>?</p>
+      <button type="button" class="btn btn-secondary" (click)="confirm()" >Bevestig</button>
+      <button type="button" class="btn btn-default" (click)="decline()" >Annuleer</button>
+    </div>
+  </ng-template>
+  <!--end-->
+  <div class=" col-12 mt-2 table-responsive ">
+    <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm mb-5 " *ngIf=" tagUsers.length > 0">
+      <thead class="bg-secondary">
+      <tr>
+
+        <th scope="col">Tag</th>
+        <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Bezoeker</th>
+        <th class="text-center" scope="col">Ontkoppelen</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let ut of utList;" >
+
+        <td>{{ ut[1]}}</td>
+        <td>{{ut[2]}}</td>
+        <td class="text-center">
+          <div class="btn-group">
+            <button  title="Ontkoppelen" type="button" class="btn btn-secondary" (click)="disconnect(ut[0])"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+

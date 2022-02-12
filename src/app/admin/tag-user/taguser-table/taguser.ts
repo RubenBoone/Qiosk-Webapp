@@ -5,6 +5,4 @@ export interface UserTag {
   userTagID: number;
   userID: number;
   tagID: number;
-  user: User;
-  tag: Tag;
 }

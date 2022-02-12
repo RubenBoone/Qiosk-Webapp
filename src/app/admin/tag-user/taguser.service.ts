@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/shared/global-constants';
-import { User } from '../security/user';
 import { UserTag } from './taguser-table/taguser';
 
 @Injectable({
@@ -38,5 +37,8 @@ export class TaguserService {
       userTag,
       { headers: headers }
     );
+  }
+  deleteUsertag(id: number): Observable<UserTag> {
+    return this.httpClient.delete<UserTag>(this.baseUrl + 'usertags/' + id);
   }
 }
