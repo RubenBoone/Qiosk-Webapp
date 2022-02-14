@@ -59,7 +59,7 @@ export class DatePickerComponent implements OnInit {
   }
   async getDateTimes(){
   this.bookingSlots$ = await this.userBookingService
-  .getAvailableTimesForDate(this.date.getDate()+"-"+(this.date.getMonth()+1)+"-"+this.date.getFullYear()).subscribe(result => {
+  .getAvailableTimesForDate((this.date.getMonth()+1)+"-"+this.date.getDate()+"-"+this.date.getFullYear()).subscribe(result => {
     this.times = result;
     console.log(result)
     this.negen=this.times.indexOf(9)>-1?true:false;
