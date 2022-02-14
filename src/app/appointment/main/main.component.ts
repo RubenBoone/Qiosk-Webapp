@@ -63,7 +63,6 @@ export class MainComponent implements OnInit {
   goToNextStep(date: Date, time: string) {
     this.d=date;
     this.t=time;
-    console.log(date);
     date.toLocaleDateString
       .toString()
       .split('-')
@@ -123,7 +122,6 @@ export class MainComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.booking)
     this.postBooking$ = this.bookingService.postBooking(this.booking).subscribe(
       (result) => {
         console.log('Submitted booking');
@@ -140,7 +138,6 @@ export class MainComponent implements OnInit {
         this.composeAndSendMail(result)
         //relatie
         this.userBooking.userID=result.userID;
-        console.log(this.userBooking)
         this.postUserBooking$ =await this.userBookingService.postUserBooking(this.userBooking).subscribe(
           (result) => {console.log('relatie initiated')})
         this.extraUsers.forEach((element) => {
@@ -196,7 +193,7 @@ export class MainComponent implements OnInit {
       "message": msg
     }).subscribe(
       data => {
-        console.log("Mail sent: ", data)
+        console.log("Mail sent!")
       },
       error => {
         console.log("Error: ", error)
