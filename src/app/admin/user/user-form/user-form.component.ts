@@ -33,7 +33,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.userID = +this.router.getCurrentNavigation()?.extras.state?.id;
-    
+
 
     if (this.userID != null && this.userID > 0) {
       this.user$ = this.userService.getUserById(this.userID).subscribe(result => this.user = result);
@@ -84,7 +84,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
   }
 
   onChange(newValue: number) {
-    console.log(newValue);
     this.user.companyID = newValue;  // don't forget to update the model here
     // ... do other stuff here ...
 }

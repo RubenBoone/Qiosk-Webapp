@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit {
       getBookingsDash() {
       this.bookings$ = this.bs.getBookingsDash().subscribe(results => {
         this.bookings=results;
-        console.log(results)
       });
     }
 

@@ -25,7 +25,6 @@ export class DatePickerComponent implements OnInit {
   @Input() time: string = '';
 
   nextStep() {
-    console.log(this.date,this.time)
     if(this.ts){
     this.goToNextStep.emit({
       date: this.date,
@@ -61,7 +60,6 @@ export class DatePickerComponent implements OnInit {
   this.bookingSlots$ = await this.userBookingService
   .getAvailableTimesForDate((this.date.getMonth()+1)+"-"+this.date.getDate()+"-"+this.date.getFullYear()).subscribe(result => {
     this.times = result;
-    console.log(result)
     this.negen=this.times.indexOf(9)>-1?true:false;
     this.een=this.times.indexOf(1)>-1?true:false;
 
