@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/admin/user/users-table/company';
 import { User } from 'src/app/admin/user/users-table/user';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-booking-form',
@@ -10,13 +11,14 @@ import { User } from 'src/app/admin/user/users-table/user';
   styleUrls: ['./booking-form.component.scss'],
 })
 export class BookingFormComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor( private router: Router,private loader: LoadingService) {}
   errorC :string ="";
   errorV :string ="";
   errorA :string ="";
   errorE :string ="";
   errorP :string ="";
 
+  loading$ = this.loader.loading$;
   @Input() company: string = '';
   @Input() email: string = '';
   @Input() firstname: string = '';
@@ -80,8 +82,6 @@ export class BookingFormComponent implements OnInit {
   onSubmit() {
     if(this.validForm()){
     this.UserData();
-     //all went well
-    this.router.navigateByUrl("boeking/bevestiging");
   }
   }
 
@@ -106,12 +106,17 @@ export class BookingFormComponent implements OnInit {
     return true
   }
 
-  backToTop() {
+  async backToTop() {
     window.scroll({
             top: 0,
             left: 0,
             behavior: 'smooth'
      });
+      //all went well
+      this.loader.show()
+      await new Promise(f => setTimeout(f, 6000));
+      if(this.validForm())this.router.navigateByUrl("boeking/bevestiging");
+      this.loader.hide()
     }
   ngOnInit(): void {}
 }

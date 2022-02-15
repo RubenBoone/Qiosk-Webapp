@@ -1,4 +1,6 @@
-<div class="my-5">
+<app-loading *ngIf="loading$ | async"></app-loading>
+
+<div *ngIf="!(loading$ | async)" class="my-5">
   <h2>Maak een boeking - Stap 2</h2>
     <form class="row">
       <div class="col-md-5 col-sm-12">
