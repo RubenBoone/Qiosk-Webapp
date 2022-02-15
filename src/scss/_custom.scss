@@ -52,3 +52,13 @@ height: 100%!important;
 }.w-mode-rl{
   writing-mode: vertical-rl;
 }
+.rotate{
+  vertical-align:top;
+	transform:rotate(7deg);
+  -ms-transform:rotate(90deg); /* IE 9 */
+  -moz-transform:rotate(90deg); /* Firefox */
+  -webkit-transform:rotate(90deg); /* Safari and Chrome */
+  -o-transform:rotate(90deg); /* Opera */
+  position:fixed;
+  right: 0;
+}
