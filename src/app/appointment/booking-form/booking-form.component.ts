@@ -1,5 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Company } from 'src/app/admin/user/users-table/company';
 import { User } from 'src/app/admin/user/users-table/user';
 
@@ -9,7 +10,7 @@ import { User } from 'src/app/admin/user/users-table/user';
   styleUrls: ['./booking-form.component.scss'],
 })
 export class BookingFormComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
   errorC :string ="";
   errorV :string ="";
   errorA :string ="";
@@ -79,6 +80,8 @@ export class BookingFormComponent implements OnInit {
   onSubmit() {
     if(this.validForm()){
     this.UserData();
+     //all went well
+    this.router.navigateByUrl("boeking/bevestiging");
   }
   }
 
