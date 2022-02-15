@@ -18,7 +18,6 @@
       <table datatable [dtOptions]="dtOptions"  class="table crud-table bg-success shadow-sm " *ngIf="bookings && bookings.length > 0">
         <thead class="bg-secondary">
           <tr>
-            <th scope="col">#</th>
             <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Bedrijf</th>
             <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Datum</th>
             <th class="text-center" scope="col">Wijzigen</th>
@@ -27,7 +26,6 @@
 
         <tbody>
           <tr *ngFor="let booking of bookings; let i = index">
-            <td>{{booking.bookingID}}</td>
             <td>{{booking.company.name}}</td>
             <td>{{booking.bookingTime | date : "dd/MM/yyyy hh:mm"}}</td>
             <td class="text-center">

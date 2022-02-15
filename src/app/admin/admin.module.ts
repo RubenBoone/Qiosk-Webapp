@@ -3,9 +3,12 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SecurityModule } from './security/security.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DataVisComponent } from './data-vis/data-vis.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DataVisComponent
+  ],
   imports: [
     SharedModule,
     AdminRoutingModule,

@@ -49,7 +49,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Naam</th>
           <th scope="col">Email</th>
           <th scope="col"></th>
@@ -57,7 +56,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of extraUsers; let i = index">
-          <th scope="row">{{i + 1}}</th>
           <td>{{user[0] + " " + user[1]}}</td>
           <td>{{user[2]}}</td>
           <td><button type="button" class="btn btn-sm btn-light delete" (click)="deleteExtraUser(user[0])"><i class="far fa-trash-alt"></i></button></td>

@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group" *ngIf="isAdd">
                     <label for="password">Wachtwoord</label>
-                    <input type="text" class="form-control" id="password" name="password" placeholder="Wachtwoord" [(ngModel)]="user.password"
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord" [(ngModel)]="user.password"
                         #password="ngModel" required minlength="5">
                     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Wachtwoord moet ingevuld zijn en minstens 5 karakters lang zijn</div>
                 </div>
@@ -45,7 +45,7 @@
                 <!--Select met FK companys-->
                 <div class="form-group">
                     <label for="companyID">Bedrijf</label><br>
-                    <select class="form-select" name="companyID" id="companyID" #select="ngModel" [(ngModel)]="user.company.companyID" (ngModelChange)="onChange($event)" required>
+                    <select class="form-select form-control" name="companyID" id="companyID" #select="ngModel" [(ngModel)]="user.companyID" (ngModelChange)="onChange($event)" required>
                         <option disabled value="0">Kies een bedrijf</option>
                         <option *ngFor="let company of companys" value="{{company.companyID}}" required>
                           {{ company.name }}

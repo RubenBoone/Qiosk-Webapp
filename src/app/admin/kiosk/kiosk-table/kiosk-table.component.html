@@ -22,7 +22,6 @@
         <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf="kiosk && kiosks.length > 0">
           <thead class="bg-secondary">
           <tr>
-            <th scope="col">#</th>
             <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Naam</th>
             <th scope="col">Beschrijving</th>
             <th scope="col">Coördinaten (x,y,radius)</th>
@@ -32,7 +31,6 @@
 
           <tbody>
           <tr *ngFor="let kiosk of kiosks; let i = index" >
-            <td>{{i + 1}}</td>
             <td>{{kiosk.name}}</td>
             <td>{{kiosk.description}}</td>
             <td>{{kiosk.coordinate}}</td>
