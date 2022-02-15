@@ -17,7 +17,8 @@
     </div>
     <small class="text-muted">De bezette momenten zijn niet selecteerbaar.</small>
     </div>
-    <div class="mb-3">
+    <app-loading *ngIf="loading$ | async"></app-loading>
+    <div  *ngIf="!(loading$ | async)" class="mb-3">
       <label for="time" class="form-label">Om hoelaat?</label>
       <div class="d-flex">
         <button (click)="timeSelected(9)" [disabled]="!negen" class="{{time=='09:00'?'btn-secondary':''}} mr-4 ml-2 form-control w-25">9:00</button>

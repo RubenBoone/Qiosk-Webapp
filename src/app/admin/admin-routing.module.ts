@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingService } from './booking/booking.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DataVisComponent } from './data-vis/data-vis.component';
 import { AuthGuard } from './security/auth.guard';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { SecurityComponent } from './security/security/security.component';
@@ -13,6 +14,12 @@ const routes: Routes = [
   {
     path: 'logout',
     component: SecurityComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'visualisaties',
+    component: DataVisComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },

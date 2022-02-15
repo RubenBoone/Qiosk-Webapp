@@ -22,7 +22,6 @@
         <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf="tags && tags.length > 0">
           <thead class="bg-secondary">
           <tr>
-            <th scope="col">#</th>
             <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Code</th>
             <th class="text-center" scope="col">Wijzigen</th>
           </tr>
@@ -30,7 +29,6 @@
 
           <tbody>
           <tr *ngFor="let tag of tags; let i = index" >
-            <td>{{i + 1}}</td>
             <td>{{tag.code}}</td>
             <td class="text-center">
               <div class="btn-group">

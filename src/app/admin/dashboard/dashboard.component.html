@@ -1,4 +1,6 @@
-<div class="container mt-5 mb-5">
+<button type="button" class="float-right m-2 mt-0 shadow btn btn-secondary btn-rounded"><a class="text-white text-decoration-none" href="/admin/visualisaties"><i class="fas fa-database"></i> Data visualisatie</a></button>
+<app-loading *ngIf="loading$ | async"></app-loading>
+<div *ngIf="!(loading$ | async)" class="container mt-5 mb-5">
   <div class="row justify-content-between text-center">
     <div class="col-md-6 col-sm-12">
       <h2>Aankomende boekingen</h2>
@@ -45,7 +47,7 @@
         <div class="list-group-item"><a href="/admin/kiosks"><i class="fas fa-store"></i> - Kiosks</a></div>
         <div class="list-group-item"><a href="/admin/tagusers"><i class="fa fa-user-tag"></i> - Tags linken</a></div>
         <div class="list-group-item"><a href="/admin/tags"><i class="fa fa-user-tag"></i> - Tags</a></div>
-        <div class="list-group-item"><a href="#"><i class="fas fa-database"></i> - Data visualisatie</a></div>
+        <div class="list-group-item"><a href="/admin/visualisaties"><i class="fas fa-database"></i> - Data visualisatie</a></div>
       </ul>
     </div>
   </div>

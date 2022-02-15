@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 import { Kiosk } from '../kiosk/kiosk-table/kiosk';
 import { Booking } from './booking';
 import { BookingService } from './booking.service';
@@ -15,13 +16,16 @@ export class DashboardComponent implements OnInit {
   numberVisitors:number = 0;
   kiosks:Kiosk[]=[];
 
-
+  loading$ = this.loader.loading$;
   kiosks$: Subscription = new Subscription();
   bookings$: Subscription = new Subscription();
-  constructor(private ks:KioskService, private bs:BookingService) { }
+  constructor(  private loader: LoadingService,private ks:KioskService, private bs:BookingService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.loader.show();
+    await new Promise(f => setTimeout(f, 500));
     this.getBookingsDash(); this.getKiosksDash();
+    this.loader.hide();
   }
   getKiosksDash() {
 

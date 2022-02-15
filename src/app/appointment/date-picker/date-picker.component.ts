@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserbookingService } from '../userbooking.service';
 import { DateAdapter } from '@angular/material/core';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-date-picker',
@@ -14,7 +15,9 @@ export class DatePickerComponent implements OnInit {
   negen :boolean=false;
   een:boolean=false;
   times: Number[]=[];
-  constructor(private userBookingService : UserbookingService,private dateAdapter: DateAdapter<Date>) {
+  loading$ = this.loader.loading$;
+
+  constructor(private loader: LoadingService,private userBookingService : UserbookingService,private dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale('nl');
   }
   minDate = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -37,7 +40,10 @@ export class DatePickerComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
+    this.loader.show();
     await this.getDateTimes();
+    this.loader.hide();
 
   }
   timeSelected(t:Number){

@@ -22,7 +22,6 @@
         <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf="companies && companies.length > 0">
           <thead class="bg-secondary">
           <tr>
-            <th scope="col">#</th>
             <th scope="col"><fa-icon [icon]="faSort"></fa-icon> Naam</th>
             <th class="text-center" scope="col">Wijzigen</th>
           </tr>
@@ -30,7 +29,6 @@
 
           <tbody>
           <tr *ngFor="let company of companies; let i = index" >
-            <td>{{i + 1}}</td>
             <td>{{company.name}}</td>
             <td class="text-center">
               <div class="btn-group">

@@ -52,7 +52,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    if (form.value.companyID.match(0)) return alert("Selecteer een bedrijf")
+    if (this.user.companyID!=0){
 
     this.isSubmitted = true;
     if (this.isAdd) {
@@ -74,7 +74,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
               error => {
                 this.errorMessage = error.message;
               });
-    }
+    }}
   }
 
   getCompanies() {
