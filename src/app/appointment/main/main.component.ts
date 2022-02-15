@@ -104,6 +104,7 @@ export class MainComponent implements OnInit {
   }
 
   constructor(
+
     private bookingService: BookingService,
     private userService: UserService,
     private userBookingService: UserbookingService,
@@ -153,7 +154,9 @@ export class MainComponent implements OnInit {
               this.composeAndSendMail(result)
               this.userBooking.userID=result.userID
               this.postUserBooking$ =await this.userBookingService.postUserBooking(this.userBooking).subscribe(
-              (result) => {console.log('relatie initiated')})
+              (result) => {console.log('relatie initiated')
+
+            })
             },
             (error) => {
               console.log(error);
