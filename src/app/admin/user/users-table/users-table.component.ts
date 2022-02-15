@@ -5,6 +5,7 @@ import { LanguageApp } from 'src/app/shared/datatables/languages';
 import { User } from './user';
 import { UserService } from '../user.service';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-users-table',
@@ -27,14 +28,18 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
   user: User = {userID: 0, firstName: "", lastName: "", email: "", password: "", isActive: false, isAdmin: false, companyID: 0, company:{ companyID :0,name: ""}}
   errorMessage: string = '';
+  loading$ = this.loader.loading$
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private loader: LoadingService,private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+
+    this.loader.show();
     this.dtOptions = {
       language: LanguageApp.dutch_datatables
     };
     this.getUsers();
+    this.loader.hide();
   }
   ngOnDestroy(): void {
     this.users$.unsubscribe();

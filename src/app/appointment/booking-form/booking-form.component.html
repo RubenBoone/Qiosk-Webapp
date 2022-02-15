@@ -3,28 +3,30 @@
     <form class="row">
       <div class="col-md-5 col-sm-12">
       <div class="mb-3">
-        <label for="company" class="form-label">Bedrijfsnaam</label>
-        <input type="text" class="form-control" id="company" name="company" aria-describedby="company" [(ngModel)]="this.company">
+        <label for="company" class="form-label">Bedrijfsnaam</label><small class="text-secondary">{{errorC==""?"*":errorC}}</small>
+        <input type="text" autofocus class="form-control {{errorC==''?'':'border-secondary'}}"  id="company" name="company" aria-describedby="company" [(ngModel)]="this.company" required>
       </div>
       <div class="mb-3">
-        <label for="firstname" class="form-label">Uw voornaam</label>
-        <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="this.firstname">
+        <label for="firstname" class="form-label">Uw voornaam</label><small class="text-secondary">{{errorV==""?"*":errorV}}</small>
+        <input type="text" class="form-control {{errorV==''?'':'border-secondary'}}" id="firstname" name="firstname" [(ngModel)]="this.firstname" required>
       </div>
       <div class="mb-3">
-        <label for="lastname" class="form-label">Uw achternaam</label>
-        <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="this.lastname">
+        <label for="lastname" class="form-label">Uw achternaam</label><small class="text-secondary">{{errorA==""?"*":errorA}}</small>
+        <input type="text" class="form-control {{errorA==''?'':'border-secondary'}}" id="lastname" name="lastname" [(ngModel)]="this.lastname">
       </div>
       <div class="mb-3">
-        <label for="email" class="form-label">Uw email</label>
-        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="this.email">
+        <label for="email" class="form-label">Uw email</label><small class="text-secondary">{{errorE==""?"*":errorE}}</small>
+        <input type="email" class="form-control {{errorE==''?'':'border-secondary'}}" id="email" name="email" [(ngModel)]="this.email">
       </div>
       <div class="mb-3">
-        <label for="password" class="form-label">Gezamelijk wachtwoord</label>
-        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="this.password">
+        <label for="password" class="form-label">Gezamelijk wachtwoord</label><small class="text-secondary">{{errorP==""?"*":errorP}}</small>
+        <input type="password" class="form-control {{errorP==''?'':'border-secondary'}}" id="password" name="password" [(ngModel)]="this.password">
         <small class="text-muted">Dit wachtwoord moet worden gedeeld met de extra personen.</small>
       </div>
   </div>
-  <div class="col-md-7 col-sm-12">
+  <div class="col-md-7 col-sm-12 pt-4">
+    <h3><strong>Resterende bezoekers</strong></h3>
+    <hr>
     <div>
       <div class="row ">
         <div class="mb-3 col-md-3">
@@ -64,6 +66,6 @@
     </table>
     </div>
     <div class="ml- mb-5">
-      <button type="submit" class="mb-5 btn btn-secondary" (click)="UserData()"><a href="/boeking/bevestiging">Boeken</a></button>
+      <button type="submit" class="mb-5 btn btn-secondary" (click)="onSubmit();backToTop();"><a>Boeken</a></button>
     </div>
 </form>

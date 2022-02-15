@@ -1,4 +1,5 @@
-<div class="container mt-5 mb-5">
+<app-loading *ngIf="loading$ | async"></app-loading>
+<div *ngIf="!(loading$ | async)" class="container mt-5 mb-5">
   <div class="row justify-content-between text-center">
     <div class="col-md-6 col-sm-12">
       <h2>Aankomende boekingen</h2>

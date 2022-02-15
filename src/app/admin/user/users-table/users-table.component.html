@@ -10,15 +10,14 @@
         </div>
       </div>
       <hr class="mb-0 mt-2">
-      <!--<app-loading *ngIf="loading$ | async"></app-loading>
-      <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
-        <div class="text-muted alert alert-primary">Geen gevonden</div>
-      </div>  -->
-      <div *ngIf="users.length == 0" class="text-center mt-4">
+
+  <!--    <div *ngIf="users.length == 0" class="text-center mt-4">
         <div class="text-muted alert alert-primary">Geen gebruikers gevonden</div>
-      </div>
+      </div>  -->
+      <app-loading *ngIf="loading$ | async"></app-loading>
     </div>
-    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
+
+    <div  *ngIf="!(loading$ | async)" class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
       <table datatable [dtOptions]="dtOptions"  class="table crud-table bg-success shadow-sm " *ngIf="users && users.length > 0">
         <thead class="bg-secondary">
         <tr>

@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { EncryptionService } from '../encryption.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-security',
@@ -25,12 +26,15 @@ export class SecurityComponent implements OnInit {
 
   isLogin: boolean = false;
   isLogout: boolean = false;
+  loading$ = this.loader.loading$;
   constructor(
+    private loader: LoadingService,
     private authService: AuthService,
     private encryptionService: EncryptionService,
     private router: Router
   ) {}
-  ngOnInit(): void {
+   ngOnInit(): void {
+    this.loader.show();
     switch (this.router.url) {
       case '/admin/login': {
         this.isLogin = true;
@@ -47,6 +51,7 @@ export class SecurityComponent implements OnInit {
         break;
       }
     }
+    this.loader.hide();
   }
   onSubmit(): void {
     this.isSubmitted = true;

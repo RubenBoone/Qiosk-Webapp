@@ -10,6 +10,7 @@ import { TaguserService } from '../taguser.service';
 import { UserTag } from './taguser';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LanguageApp } from 'src/app/shared/datatables/languages';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-taguser-table',
@@ -41,13 +42,17 @@ export class TaguserTableComponent implements OnInit {
   // Extra
   dtOptions: DataTables.Settings = {};
 
-  constructor(private router: Router,private modalService: BsModalService, private taguserService: TaguserService,private userService:UserService,private tagService:TagService ) {}
+  loading$ = this.loader.loading$
+  constructor(private loader: LoadingService, private router: Router,private modalService: BsModalService, private taguserService: TaguserService,private userService:UserService,private tagService:TagService ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.loader.show();
+    await new Promise(f => setTimeout(f, 500));
     this.dtOptions = {
       language: LanguageApp.dutch_datatables
     };
     this.getUsers();
+    this.loader.hide();
   }
 
   ngOnDestroy(): void {

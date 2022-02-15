@@ -10,6 +10,11 @@ import { User } from 'src/app/admin/user/users-table/user';
 })
 export class BookingFormComponent implements OnInit {
   constructor() {}
+  errorC :string ="";
+  errorV :string ="";
+  errorA :string ="";
+  errorE :string ="";
+  errorP :string ="";
 
   @Input() company: string = '';
   @Input() email: string = '';
@@ -72,7 +77,9 @@ export class BookingFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if(this.validForm()){
     this.UserData();
+  }
   }
 
   createRange(number: number) {
@@ -82,6 +89,26 @@ export class BookingFormComponent implements OnInit {
     }
     return items;
   }
+  validForm(){
+    if(this.company.trim()==""||this.firstname.trim()==""||this.lastname.trim()==""||this.email.trim()==""||this.password.trim()==""||this.password.trim().length<4)
+    {
+      this.errorC=this.company.trim()==""?"* (Bedrijf mag niet leeg zijn)":""
+      this.errorV=this.firstname.trim()==""?"* (Voornaam mag niet leeg zijn)":""
+      this.errorA=this.lastname.trim()==""?"* (Achternaam mag niet leeg zijn)":""
+      this.errorE=this.email.trim()==""?"* (Email moet coorect ingevuld  zijn)":""
+      this.errorP=this.password.trim()==""?"* (Wachtwoord mag niet leeg zijn)":""
+      this.errorP=this.password.trim().length<4?"* (Wachtwoord moet minimaal 4 tekens zijn)":""
+      return false
+    }
+    return true
+  }
 
+  backToTop() {
+    window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+     });
+    }
   ngOnInit(): void {}
 }
