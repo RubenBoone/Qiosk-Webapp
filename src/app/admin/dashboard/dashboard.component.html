@@ -21,6 +21,9 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="bookings.length == 0" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen aankomende boekingen gevonden</div>
+      </div>
     </div>
     <div class="col-md-6 col-sm-12">
       <h2>Kiosks</h2>
@@ -38,6 +41,9 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="bookings.length == 0" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen kiosks gevonden</div>
+      </div>
     </div>
     <div class="col-sm-12 mb-5 pb-5">
       <h2>Snelle navigatie</h2>
